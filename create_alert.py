@@ -34,13 +34,6 @@ pipeline_stage_input_job_id = environ.get('PIPELINE_STAGE_INPUT_JOB_ID')
 pipeline_initial_stage_execution_id = environ.get('PIPELINE_INITIAL_STAGE_EXECUTION_ID')
 workspace = environ.get('WORKSPACE')
 
-print("TASK_ID:", task_id)
-print("PIPELINE_ID:", pipeline_id)
-print("PIPELINE_STAGE_ID:", pipeline_stage_id)
-print("PIPELINE_STAGE_INPUT_JOB_ID:", pipeline_stage_input_job_id)
-print("PIPELINE_INITIAL_STAGE_EXECUTION_ID:", pipeline_initial_stage_execution_id)
-print("IDS_JOB_ID:", ids_job_id)
-
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
