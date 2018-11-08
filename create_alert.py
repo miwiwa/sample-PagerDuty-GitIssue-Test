@@ -61,21 +61,19 @@ def trigger_incident():
     
     # Parse dict for PagerDuty parameters
     try:
-    	pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-    	pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-    	pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+        pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+        pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+        pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    	
+        api_key = pd_api_key[0]
+        service_id = pd_service_id[0]
+        user_email = pd_user_email[0]
     except KeyError:
-    	print("ERROR: Pager Duty is not configured correctly with the toolchain")
-    	exit()
-    
-    # Retrieve values from resulting list. If values do not exist then 
-    try:
-      api_key = pd_api_key[0]
-      service_id = pd_service_id[0]
-      user_email = pd_user_email[0]
+        print("ERROR: Pager Duty is not configured correctly with the toolchain")
     except IndexError:
-      print("ERROR: Pager Duty is not configured correctly with the toolchain")
-	
+        print("ERROR: Pager Duty is not configured correctly with the toolchain")
+
+    
 	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
     headers = {
