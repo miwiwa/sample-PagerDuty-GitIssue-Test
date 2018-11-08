@@ -126,7 +126,7 @@ def trigger_issue(title, body=None, labels=None):
     
       git_repo_owner = repo_owner[0]
       git_repo_name = repo_name[0]
-    except (KeyError, IndexError:
+    except (KeyError, IndexError):
       print("ERROR: Git Issues is not configured correctly with the toolchain")
       return 1
 
