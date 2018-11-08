@@ -59,10 +59,13 @@ pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id + 
 def trigger_incident():
 	# Function creates request to create new PagerDuty incident and submits
     
-    # Parse dict for PagerDuty parameters 
-    pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-    pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-    pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    # Parse dict for PagerDuty parameters
+    try:
+    	pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    	pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    	pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    except KeyError:
+    	print("ERROR: Pager Duty is not configured correctly with the toolchain")
     
     # Retrieve values from resulting list. If values do not exist then 
     try:
