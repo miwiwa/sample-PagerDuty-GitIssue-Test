@@ -66,6 +66,7 @@ def trigger_incident():
     	pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     except KeyError:
     	print("ERROR: Pager Duty is not configured correctly with the toolchain")
+    	exit()
     
     # Retrieve values from resulting list. If values do not exist then 
     try:
