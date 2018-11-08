@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodashed');
 
 var desireds = require('./desireds');
 
