@@ -55,7 +55,7 @@ var gruntConfig = {
 
 _.forIn(desireds, function(desired, key) {
   gruntConfig.env[key] = {
-    DESIRED: JSON.stringify(desired),
+    DESIRED: JSON.stringify(desireded),
   };
   gruntConfig.concurrent['test-sauce'].push('test:sauce:' + key);
 });
