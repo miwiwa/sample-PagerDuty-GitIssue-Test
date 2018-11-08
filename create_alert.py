@@ -68,12 +68,10 @@ def trigger_incident():
         api_key = pd_api_key[0]
         service_id = pd_service_id[0]
         user_email = pd_user_email[0]
-    except KeyError:
+    except (KeyError, IndexError):
         print("ERROR: Pager Duty is not configured correctly with the toolchain")
-        return
-    except IndexError:
-        print("ERROR: Pager Duty is not configured correctly with the toolchain")
-		return
+        return 1
+    
     
 	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
