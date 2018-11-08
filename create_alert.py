@@ -71,8 +71,7 @@ def trigger_incident():
     except (KeyError, IndexError):
         print("ERROR: Pager Duty is not configured correctly with the toolchain")
         return 1
-    
-    
+     
 	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
     headers = {
@@ -107,7 +106,7 @@ def trigger_incident():
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
     else:
-		print("ERROR: PagerDuty incident request created successfully")
+		print("PagerDuty incident request created successfully")
 		
 def trigger_issue(title, body=None, labels=None):
 	# Function creates request to create Git Issue and submits
@@ -121,14 +120,15 @@ def trigger_issue(title, body=None, labels=None):
     git_password = git_parameters[3]
 	
 	# Retrieve owner and name of repo from toolchain.json
-    repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
-    repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
-    
     try:
+      repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
+      repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
+    
       git_repo_owner = repo_owner[0]
       git_repo_name = repo_name[0]
-    except IndexError:
+    except (KeyError, IndexError:
       print("ERROR: Git Issues is not configured correctly with the toolchain")
+      return 1
 
     # Specifies URL for github api
     url = 'https://api.github.com/repos/%s/%s/issues' % (git_repo_owner, git_repo_name)
@@ -146,33 +146,10 @@ def trigger_issue(title, body=None, labels=None):
     r = session.post(url, json.dumps(issue))
     
     if r.status_code != 201:
-    	print ('Could not create Git Issue {0:s}'.format(title))
+    	print ('ERROR: Could not create Git Issue {0:s}'.format(title))
         exit()   
     else:
         print ('Successfully created Git Issue {0:s}'.format(title))
-        
-def get_log():
-	# Download log from stage
-	log_url = "https://console.bluemix.net/devops/pipelines/" + ids_instance_id + "/download/" + pipeline_stage_id + "/" + ids_job_id + "/" + task_id + "/log?env_id=ibm:yp:us-south"
-	
-	print("log_url:",log_url)
-	r = requests.get(log_url)
-	
-	print("Printing content of r.text")
-	print r.text
-	
-	print("Printing content of r.json")
-	print r.json
-	
-	print("Printing content of r.content")
-	print r.content
-	
-	print("status code")
-	print r.status_code
-	
-	resp = requests.head(log_url)
-	print resp.status_code, resp.text, resp.headers
-	
 
 if __name__ == '__main__':	
 	print("=============================")
@@ -182,14 +159,11 @@ if __name__ == '__main__':
 		print("Creating PagerDuty incident....")
 		trigger_incident()
 		print("Creating Git issue....")
-		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])
-		get_log()
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])	
 	elif 'incident' in alerts:		
 		trigger_incident()
-		get_log()
 	elif 'issue' in alerts:
 		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])
-		get_log()
 	else:
 		print("Alert type was not specified in call")
 
