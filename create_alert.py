@@ -78,7 +78,7 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed" ,
+            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + " and Project: " + ids_project_name + " failed" ,
             "service": {
                 "id": service_id,
                 "type": "service_reference"
@@ -153,7 +153,7 @@ if __name__ == '__main__':
 		print("Creating PagerDuty incident....")
 		trigger_incident()
 		print("Creating Git issue....")
-		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])	
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " and Project: " + ids_project_name + " failed", pipeline_full_url, ['bug'])	
 	elif 'incident' in alerts:		
 		trigger_incident()
 	elif 'issue' in alerts:
