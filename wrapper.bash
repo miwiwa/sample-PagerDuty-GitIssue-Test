@@ -3,6 +3,8 @@
 filename="notification.exclude.conf"
 echo "IDS_JOB_NAME: ${IDS_JOB_NAME}"
 
+echo "entering while loop"
+echo "filename: $filename"
 
 while read line; do
 	echo "$line"
