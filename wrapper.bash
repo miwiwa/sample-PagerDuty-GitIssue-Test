@@ -1,5 +1,12 @@
 #!/bin/bash
 
+while read line; do
+  if [[ $line =~ ${IDS_JOB_NAME} ]] ; then 
+  	alert=$(cut -d ";" -f 2 <<< $line)
+  	echo "alert: $alert"
+  fi
+done < notification.exclude.conf
+
 executable_script=$1
 incident=$2
 issue=$3
