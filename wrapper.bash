@@ -3,15 +3,18 @@
 filename="notification.exclude.conf"
 echo "IDS_JOB_NAME: ${IDS_JOB_NAME}"
 
+
 while read line; do
 	echo "$line"
   	if [[ $line =~ ${IDS_JOB_NAME} ]] ; then 
   		alert=$(cut -d ";" -f 2 <<< $line)
   		echo "alert: $alert"
+  		echo "Inside if statement in while loop"
   	else
+  		echo "inside else statement"
   		echo "Job Name not found in exclusion list"
   	fi
-done < ${filename}
+done <${filename}
 
 executable_script=$1
 incident=$2
