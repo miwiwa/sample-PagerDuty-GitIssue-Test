@@ -1,11 +1,16 @@
 #!/bin/bash
 
+filename="notification.exclude.conf"
+echo "IDS_JOB_NAME: ${IDS_JOB_NAME}"
+
 while read line; do
   if [[ $line =~ ${IDS_JOB_NAME} ]] ; then 
   	alert=$(cut -d ";" -f 2 <<< $line)
   	echo "alert: $alert"
+  else
+  	echo "Job Name not found in exclusion list"
   fi
-done < notification.exclude.conf
+done < ${filename}
 
 executable_script=$1
 incident=$2
@@ -21,6 +26,4 @@ then
 else
 	echo "tests passed"
 fi
-
-echo "qa_test: $qa_test"
 
