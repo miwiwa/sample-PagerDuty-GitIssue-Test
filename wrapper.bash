@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pwd
+ls -la
+
 filename="notification.exclude.conf"
 echo "IDS_JOB_NAME: ${IDS_JOB_NAME}"
 
