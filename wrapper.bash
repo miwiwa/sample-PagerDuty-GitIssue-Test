@@ -6,29 +6,13 @@ ls -la
 filename="notification.exclude.conf"
 echo "IDS_JOB_NAME: ${IDS_JOB_NAME}"
 
-echo "entering while loop"
-echo "filename: $filename"
+var=$(grep $IDS_JOB_NAME $filename | sed 's:[^;]*/\(.*\):\1:')
+echo "var: $var"
+num=$(echo $var | tr -cd ';' | wc -c)
 
-File="notification.exclude.conf"
-#if grep -q "Linting" "$File"; then
-#  echo "String found in $File"
-#fi
-
-File_Search=$(grep -hnr $IDS_JOB_NAME $File)
-echo "File_Search: $File_Search"
-
-
-#while read line; do
-#	echo "$line"
-#  	if [[ $line =~ ${IDS_JOB_NAME} ]] ; then 
-#  		alert=$(cut -d ";" -f 2 <<< $line)
-#  		echo "alert: $alert"
-#  		echo "Inside if statement in while loop"
-#  	else
-#  		echo "inside else statement"
-#  		echo "Job Name not found in exclusion list"
-#  	fi
-#done <${filename}
+for ((i=2;i<=$num+1;i++)); do
+        echo "\"$var"\ | cut -d ";" -f $i""
+done
 
 #executable_script=$1
 #incident=$2
