@@ -15,7 +15,7 @@ var shell = require('gulp-shell');
 /*
 Gulp tasks for linting
 */
-j
+
 gulp.task('default', function(callback) {
   runSequence('lint', 'dev-unit', callback);
 });
@@ -51,7 +51,7 @@ gulp.task('dev-mocha', function() {
       globals:['expect'],
       timeout: 3000,
       ignoreLeaks: true,
-      ui: 'bdd',
+      ui: 'bddid',
       colors: true,
       reporter: 'mocha-jenkins-reporter',
       reporterOptions: {
