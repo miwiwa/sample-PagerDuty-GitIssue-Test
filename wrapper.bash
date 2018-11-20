@@ -19,12 +19,12 @@ if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} "
     exit 0
 elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
 	echo "Creating git issue from wrapper"
-	/usr/bin/python create_alert.py -a $issue
+	/usr/bin/python create_alert.py -a issue
 elif [[ " ${enable_alerts[@]} " =~ "no-git" ]]; then
 	echo "Creating Pager Duty incident from wrapper"
-	/usr/bin/python create_alert.py -a $incident
+	/usr/bin/python create_alert.py -a incident
 else
 	echo "Creating both Pager Duty incident and Git issue from wrapper"
-	/usr/bin/python create_alert.py -a $incident $issue
+	/usr/bin/python create_alert.py -a incident issue
 fi
 
