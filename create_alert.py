@@ -156,7 +156,7 @@ def trigger_slackMessage():
     headers = {
         'Content-type': 'application/json',
     }
-    d = []
+    d = {}
     d['text'] = "Job: " + ids_job_name + "started in Stage: " + ids_stage_name
     print("d:", d)
     data = json.dumps(d)
