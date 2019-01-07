@@ -20,17 +20,28 @@ for ((i=2;i<=$num+1;i++)); do
 done
 
 # Call python script to send alerts based on content of array
-if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] ; then
-    echo "PagerDuty and Git Issues not configured for this job"
+if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]] ; then
+    echo "Alerts not configured for this job"
     exit 0
-elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
+elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]]; then
 	echo "Creating git issue from wrapper"
 	/usr/bin/python create_alert.py -a issue
-elif [[ " ${enable_alerts[@]} " =~ "no-git" ]]; then
+elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]]; then
 	echo "Creating Pager Duty incident from wrapper"
 	/usr/bin/python create_alert.py -a incident
-else
-	echo "Creating both Pager Duty incident and Git issue from wrapper"
+elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
+	echo "Creating Slack message from wrapper"
+	/usr/bin/python create_alert.py -a slackMessage
+elif [[ " ${enable_alerts[@]} " =~ "no-git" ]]; then
+	echo "Creating Pager Duty incident and Slack message from wrapper"
+	/usr/bin/python create_alert.py -a incident slackMessage
+elif [[ " ${enable_alerts[@]} " =~ "no-slack" ]]; then
+	echo "Creating Pager Duty incident and Git issue from wrapper"
 	/usr/bin/python create_alert.py -a incident issue
+elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
+	echo "Creating Git issue and Slack message from wrapper"
+	/usr/bin/python create_alert.py -a issue slackMessage
+else
+	echo "Creating Pager Duty incident, Slack message, and Git issue from wrapper"
+	/usr/bin/python create_alert.py -a incident issue slackMessage
 fi
-
