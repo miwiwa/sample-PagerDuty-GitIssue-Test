@@ -10,9 +10,9 @@ filename="notification.exclude.conf"
 
 # Retrieve line from exclusion list for current job
 var=$(grep $IDS_JOB_NAME $filename | sed 's:[^;]*/\(.*\):\1:')
-
-#num=$(echo $var | tr -cd ';' | wc -c)
-
+echo "Var: $var"
+num=$(echo $var | tr -cd ';' | wc -c)
+echo "Num: $num"
 # Loop through line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
         alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
