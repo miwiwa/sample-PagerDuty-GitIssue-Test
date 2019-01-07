@@ -158,8 +158,8 @@ def trigger_slackMessage():
     }
 
     web_hook_url = 'https://hooks.slack.com/services/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'
-    data = '{"text": "JOB NAME", ids_job_name, "started in STAGE:", ids_stage_name}'
-
+   # data = '{"text": "JOB NAME", ids_job_name, "started in STAGE:", ids_stage_name}'
+    data = '{"text":"Hello, World!"}'
     response = requests.post(web_hook_url, headers=headers, data=data)
 
     if response.status_code != 200:
