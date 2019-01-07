@@ -24,6 +24,12 @@ alerts = args.ALERTS
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
+ids_stage_num = environ.get('BUILD_NUMBER')
+ids_job_num = environ.get('BUILD_ID')
+print('BUILD_ID:', ids_job_num)
+print('BUILD_NUMBER:', ids_stage_num)
+
+
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
 ids_project_name = environ.get('IDS_PROJECT_NAME')
