@@ -31,17 +31,17 @@ elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ 
 	/usr/bin/python create_alert.py -a incident
 elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
 	echo "Creating Slack message from wrapper"
-	/usr/bin/python create_alert.py -a slackMessage
+	/usr/bin/python create_alert.py -a message
 elif [[ " ${enable_alerts[@]} " =~ "no-git" ]]; then
 	echo "Creating Pager Duty incident and Slack message from wrapper"
-	/usr/bin/python create_alert.py -a incident slackMessage
+	/usr/bin/python create_alert.py -a incident message
 elif [[ " ${enable_alerts[@]} " =~ "no-slack" ]]; then
 	echo "Creating Pager Duty incident and Git issue from wrapper"
 	/usr/bin/python create_alert.py -a incident issue
 elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
 	echo "Creating Git issue and Slack message from wrapper"
-	/usr/bin/python create_alert.py -a issue slackMessage
+	/usr/bin/python create_alert.py -a issue message
 else
 	echo "Creating Pager Duty incident, Slack message, and Git issue from wrapper"
-	/usr/bin/python create_alert.py -a incident issue slackMessage
+	/usr/bin/python create_alert.py -a incident issue message
 fi
