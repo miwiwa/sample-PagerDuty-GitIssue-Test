@@ -13,6 +13,7 @@ import subprocess
 import re
 import sys
 import datetime
+import pytz
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
@@ -168,10 +169,10 @@ def trigger_slackMessage():
         'Content-type': 'application/json',
     }
     d = {}
-    print("Job_status:",job_status)
-    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time
+   
+    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time + "\n URL: " + pipeline_full_url
     data = json.dumps(d)
-    print(data)
+  
     web_hook_url = 'https://hooks.slack.com/services/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'
   
     response = requests.post(web_hook_url, headers=headers, data=data)
