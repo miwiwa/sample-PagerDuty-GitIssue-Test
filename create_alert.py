@@ -13,7 +13,6 @@ import subprocess
 import re
 import sys
 import datetime
-import pytz
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
