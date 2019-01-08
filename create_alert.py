@@ -26,7 +26,7 @@ job_status = args.STATUS
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
-ids_stage_num = environ.get('BUILD_NUMBER')
+ids_stage_num = environ.get('BUILD_DISPLAY_NAME')
 ids_job_num = environ.get('BUILD_ID')
 print('BUILD_ID:', ids_job_num)
 print('BUILD_NUMBER:', ids_stage_num)
@@ -43,7 +43,7 @@ workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
 
 currentDT = datetime.datetime.now()
-current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %z")     
+current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
@@ -169,12 +169,11 @@ def trigger_slackMessage():
     }
     d = {}
     print("Job_status:",job_status)
-    d['text'] = "Job *'" + ids_job_name + "'*" + "in Stage *'" + ids_stage_name + "'*" + ids_stage_num + "*" + job_status + "*" + "\n" + current_time
+    d['text'] = "Job" + *ids_job_name* + "in Stage" + *ids_stage_name* + ":" + ids_stage_num + " " + *job_status* + "\n" + current_time
     data = json.dumps(d)
     print(data)
     web_hook_url = 'https://hooks.slack.com/services/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'
-   # data = '{"text": "JOB NAME", ids_job_name, "started in STAGE: ", ids_stage_name}'
-   #data = '{"text":"Hello, World!", + }'
+  
     response = requests.post(web_hook_url, headers=headers, data=data)
 
     if response.status_code != 200:
