@@ -165,8 +165,7 @@ def trigger_slackMessage():
     }
     d = {}
     print("Job_status:",job_status)
-    d['text'] = "Job: " + ids_job_name + "\n" + job_status + "in Stage: " + ids_stage_name
-    print("d:", d)
+    d['text'] = "Job *'" + ids_job_name + "'*" in Stage  "'*" + ids_stage_name + "'*" + ids_stage_num + "*"job_status"*"
     data = json.dumps(d)
     print(data)
     web_hook_url = 'https://hooks.slack.com/services/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'
