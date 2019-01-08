@@ -17,10 +17,11 @@ import sys
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
    
 parser = argparse.ArgumentParser(     description=__doc__)
-parser.add_argument('-a','--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
-
+parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
+parser.add_argument('-s', '--STATUS', type-str.lower, dest='STATUS', help="Enter 'started' or 'completed' for Slack alerts")
 args = parser.parse_args()
 alerts = args.ALERTS
+job_status = args.STATUS
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -163,7 +164,7 @@ def trigger_slackMessage():
         'Content-type': 'application/json',
     }
     d = {}
-    d['text'] = "Job: " + ids_job_name + "\nstarted in Stage: " + ids_stage_name
+    d['text'] = "Job: " + ids_job_name + "\n" + job_status + "in Stage: " + ids_stage_name
     print("d:", d)
     data = json.dumps(d)
     print(data)
