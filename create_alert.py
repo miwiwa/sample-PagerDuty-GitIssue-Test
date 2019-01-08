@@ -12,6 +12,7 @@ from os import environ
 import subprocess
 import re
 import sys
+import datetime
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
@@ -40,7 +41,10 @@ pipeline_id = environ.get('PIPELINE_ID')
 pipeline_stage_id = environ.get('PIPELINE_STAGE_ID')
 workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
-     
+
+currentDT = datetime.datetime.now()
+current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %z")     
+
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
@@ -165,7 +169,7 @@ def trigger_slackMessage():
     }
     d = {}
     print("Job_status:",job_status)
-    d['text'] = "Job *'" + ids_job_name + "'*" + "in Stage *'" + ids_stage_name + "'*" + ids_stage_num + "*" + job_status + "*"
+    d['text'] = "Job *'" + ids_job_name + "'*" + "in Stage *'" + ids_stage_name + "'*" + ids_stage_num + "*" + job_status + "*" + "\n" + current_time
     data = json.dumps(d)
     print(data)
     web_hook_url = 'https://hooks.slack.com/services/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'
