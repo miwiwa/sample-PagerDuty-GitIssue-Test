@@ -171,13 +171,13 @@ def trigger_slackMessage():
     d = {}
     print("pl_full_url:", pipeline_full_url)
     print(job_status)
-    if job_status == 'Started':
+    if job_status == 'started':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
         #d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
-    elif job_status == 'Success':
+    elif job_status == 'success':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
-    elif job_status == 'Fail':
+    elif job_status == 'fail':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
     else:
