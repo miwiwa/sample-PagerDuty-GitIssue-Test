@@ -169,8 +169,8 @@ def trigger_slackMessage():
     }
     d = {}
     print("pl_full_url:", pipeline_full_url)
-    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time + "\n URL: " + pipeline_full_url
-    d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num, "title_link": pipeline_full_url }]
+    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time
+    d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + "Failed", "title_link": pipeline_full_url, "color": "#2eb886" }]
     print("d:", d)
     data = json.dumps(d)
     print("data",data)
