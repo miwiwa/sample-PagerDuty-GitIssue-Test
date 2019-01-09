@@ -170,7 +170,7 @@ def trigger_slackMessage():
     d = {}
     print("pl_full_url:", pipeline_full_url)
     d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time + "\n URL: " + pipeline_full_url
-    d['attachments'] = "Attachment test"
+    d['attachments'] = [ { "title": "Slack API Documentation", "title_link": "https://api.slack.com/"}]
     print("d:", d)
     data = json.dumps(d)
     print("data",data)
