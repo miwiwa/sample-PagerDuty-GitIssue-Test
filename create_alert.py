@@ -41,6 +41,7 @@ pipeline_id = environ.get('PIPELINE_ID')
 pipeline_stage_id = environ.get('PIPELINE_STAGE_ID')
 workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
+trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
@@ -169,8 +170,8 @@ def trigger_slackMessage():
     }
     d = {}
     print("pl_full_url:", pipeline_full_url)
-    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "*\n *" + job_status + "* : " + current_time
-    d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + "Failed", "title_link": pipeline_full_url, "color": "#2eb886" }]
+    d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
+    d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " Failed", "title_link": pipeline_full_url, "color": "#2eb886" }]
     print("d:", d)
     data = json.dumps(d)
     print("data",data)

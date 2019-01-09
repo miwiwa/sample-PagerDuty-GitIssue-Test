@@ -3,9 +3,12 @@
 #  Sends alert with link to failing job to Pager Duty or Git Issue depending on pipeline config
 #
 
+
 enable_alerts=()
 
-#j exclude file contains list of alerts not to send
+slack_status=$1
+
+# exclude file contains list of alerts not to send
 filename="notification.exclude.conf"
 
 # Retrieve line from exclusion list for current job
@@ -31,17 +34,17 @@ elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ 
 	/usr/bin/python create_alert.py -a incident
 elif [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
 	echo "Creating Slack message from wrapper"
-	/usr/bin/python create_alert.py -a message
+	/usr/bin/python create_alert.py -a message -s $slack_status
 elif [[ " ${enable_alerts[@]} " =~ "no-git" ]]; then
 	echo "Creating Pager Duty incident and Slack message from wrapper"
-	/usr/bin/python create_alert.py -a incident message -s Started
+	/usr/bin/python create_alert.py -a incident message -s $slack_status
 elif [[ " ${enable_alerts[@]} " =~ "no-slack" ]]; then
 	echo "Creating Pager Duty incident and Git issue from wrapper"
 	/usr/bin/python create_alert.py -a incident issue
 elif [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]]; then
 	echo "Creating Git issue and Slack message from wrapper"
-	/usr/bin/python create_alert.py -a issue message
+	/usr/bin/python create_alert.py -a issue message -s $slack_status
 else
 	echo "Creating Pager Duty incident, Slack message, and Git issue from wrapper"
-	/usr/bin/python create_alert.py -a incident issue message
+	/usr/bin/python create_alert.py -a incident issue message -s $slack_status
 fi
