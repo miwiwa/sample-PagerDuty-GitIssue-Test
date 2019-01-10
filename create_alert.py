@@ -28,10 +28,6 @@ job_status = args.STATUS
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_stage_num = environ.get('BUILD_DISPLAY_NAME')
 ids_job_num = environ.get('BUILD_ID')
-print('BUILD_ID:', ids_job_num)
-print('BUILD_NUMBER:', ids_stage_num)
-
-
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
 ids_project_name = environ.get('IDS_PROJECT_NAME')
@@ -43,6 +39,7 @@ workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
 trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 
+# Generate current Timestamp
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
@@ -169,8 +166,7 @@ def trigger_slackMessage():
         'Content-type': 'application/json',
     }
     d = {}
-    print("pl_full_url:", pipeline_full_url)
-    print(job_status)
+    
     if job_status == 'started':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
         #d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
@@ -189,7 +185,6 @@ def trigger_slackMessage():
   
     response = requests.post(web_hook_url, headers=headers, data=data)
 
-    print(response)
     if response.status_code != 200:
         raise ValueError(
             'Request to slack returned an error %s, the response is:\n%s'
