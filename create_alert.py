@@ -19,7 +19,7 @@ description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
-parser.add_argument('-s', '--STATUS', type=str.lower, dest='STATUS', help="Enter 'started' or 'completed' for Slack alerts")
+parser.add_argument('-s', '--STATUS', type=str.lower, dest='STATUS', default='Executed', required=False, help="Enter 'started' or 'completed' for Slack alerts")
 args = parser.parse_args()
 alerts = args.ALERTS
 job_status = args.STATUS
