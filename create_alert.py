@@ -12,6 +12,7 @@ from os import environ
 import subprocess
 import re
 import sys
+import yaml
 import datetime
 
 # Read in argument(s)

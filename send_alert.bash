@@ -3,19 +3,18 @@
 #  Sends alert with link to failing job to Pager Duty or Git Issue depending on pipeline config
 #
 
-
 enable_alerts=()
 
 slack_status=$1
 
 # exclude file contains list of alerts not to send
-#filename="notification.exclude.conf"
-
+filename="notification.exclude.conf"
+echo "filename: $filename"
+echo "About to curl"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
 # Retrieve line from exclusion list for current job
 var=$(grep $IDS_JOB_NAME $filename | sed 's:[^;]*/\(.*\):\1:')
-
 num=$(echo $var | tr -cd ';' | wc -c)
 
 # Loop through line and add exclusion to array
