@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # Program submits PagerDuty incidents or Git issues upon request
 
 import pip
