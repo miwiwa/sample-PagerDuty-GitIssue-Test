@@ -43,6 +43,11 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
+with open('pipeline.config', 'r') as f:
+    pipeline_config = yaml.load(f)
+    
+print(pipeline_config)
+
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
@@ -179,13 +184,13 @@ def trigger_slackMessage():
     else:
         print("Slack message not sent due to unknown status")
     
-    print(d)
+    
     data = json.dumps(d)
-    print(data)
+   
     web_hook_url = 'https://hooks.slack.com/services/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'
   
     response = requests.post(web_hook_url, headers=headers, data=data)
-    print(response)
+   
     if response.status_code != 200:
         raise ValueError(
             'Request to slack returned an error %s, the response is:\n%s'
