@@ -3,7 +3,9 @@
 
 import pip
 package = 'requests'
+package2 = 'yaml'
 pip.main(['install', package])
+pip.main(['install', package2])
 
 import requests
 import json
