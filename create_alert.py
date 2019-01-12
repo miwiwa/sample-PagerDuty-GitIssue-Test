@@ -3,9 +3,7 @@
 
 import pip
 package = 'requests'
-package2 = 'yaml'
 pip.main(['install', package])
-pip.main(['install', package2])
 
 import requests
 import json
@@ -50,6 +48,7 @@ with open('pipeline.config', 'r') as f:
     pipeline_config = yaml.load(f)
     
 print(pipeline_config)
+print(type(pipeline_config))
 
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
