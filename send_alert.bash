@@ -5,12 +5,18 @@
 
 enable_alerts=()
 
-slack_status=$1
+
 
 sudo apt-get update
 sudo apt-get install python python-yaml
 
-[ -z "$1" ] && slack_status = "Executed"
+if [ $# -eq 1 ]
+  then
+    slack_status=$1
+else
+  slack_status=="executed"
+fi
+
 
 # exclude file contains list of alerts not to send
 filename="notification.exclude.conf"
