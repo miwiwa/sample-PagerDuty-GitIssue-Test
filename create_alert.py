@@ -46,9 +46,9 @@ current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")
 
 with open('pipeline.config', 'r') as f:
     pipeline_config = yaml.load(f)
-
+print(type(pipeline_config))
 job_exclusions = pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]
-print(type(job_exclusions))
+print(job_exclusions))
 print(pipeline_config)
 
 
