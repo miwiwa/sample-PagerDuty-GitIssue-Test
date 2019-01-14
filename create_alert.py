@@ -47,10 +47,10 @@ current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")
 with open('pipeline.config', 'r') as f:
     pipeline_config = yaml.load(f)
 
-print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
-    
+job_exclusions = pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]
+print(type(job_exclusions))
 print(pipeline_config)
-print(type(pipeline_config))
+
 
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
