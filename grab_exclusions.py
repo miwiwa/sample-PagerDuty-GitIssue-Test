@@ -1,4 +1,6 @@
 import argparse
+from os import environ
+import yaml
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
