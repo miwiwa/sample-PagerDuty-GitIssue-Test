@@ -24,6 +24,6 @@ with open(config, 'r') as f:
 #print("pipeline_config",pipeline_config)
 
 for x in pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]:
-    sys.stdout.write(';',x)
-    #sys.stdout.write(";") 
+    sys.stdout.write(';')
+    sys.stdout.write(x) 
 	#print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
