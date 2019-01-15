@@ -25,7 +25,7 @@ echo "filename: $filename"
 echo "About to curl"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-var=$(python grab_exclusions.py -c $filename) #| sed 's/'[][]'//g')
+var=$(python grab_exclusions.py -c $filename) | sed 's/'[][]'//g')
 echo "var: $var"
 
 # Retrieve line from exclusion list for current job
@@ -35,7 +35,7 @@ num=$(echo $var | tr -cd ',' | wc -c)
 echo "num: $num"
 # Loop through line and add exclusion to array
 for ((i=1;i<=$num+1;i++)); do
-       alert_type=$(echo "\"$var"\ | cut -d "," -f $i")
+       alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
        
        echo "alert_type: $alert_type"
        enable_alerts+=$alert_type
