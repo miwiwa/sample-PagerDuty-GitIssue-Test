@@ -1,6 +1,7 @@
 import argparse
 from os import environ
 import yaml
+import ast
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
@@ -17,5 +18,6 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 
 with open(config, 'r') as f:
     pipeline_config = yaml.load(f)
-    
+ 
+pipeline_config = ast.literal_eval(pipeline_config)
 print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
