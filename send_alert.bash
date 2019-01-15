@@ -27,10 +27,11 @@ curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-
 
 out=$(python grab_exclusions.py -c $filename)
 echo "out: $out"
-var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//; s/''//g')
-echo "var: $var"
+#var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//; s/''//g')
 
-#var=$(python grab_exclusions.py -c $filename | sed 's/'[][] //g')
+
+var=$(python grab_exclusions.py -c $filename | sed 's/'[][] //g')
+echo "var: $var"
 
 # Retrieve line from exclusion list for current job
 #var=$(grep $IDS_JOB_NAME $filename | sed 's:[^;]*/\(.*\):\1:')
