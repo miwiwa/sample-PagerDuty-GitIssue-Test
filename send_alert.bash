@@ -42,11 +42,10 @@ echo "num: $num"
 for ((i=2;i<=$num+1;i++)); do
        alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
        #alert_type=$(echo "\"$var"\ | cut -d "," -f $i")
-       
-       echo "alert_type: $alert_type"
        enable_alerts+=$alert_type
 done
 
+echo ${enable_alerts[*]}
 #for ((i=0; i<${#enable_alerts[@]}; i++)); do
 #    alerts = eval(${#enable_alerts[i]})
 #    print(alerts)

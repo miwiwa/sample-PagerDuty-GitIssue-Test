@@ -232,7 +232,7 @@ if __name__ == '__main__':
         print("=============================")
         print("Creating GitHub issue")
         trigger_issue()
-    elif 'slackMessage' in alerts:
+    elif 'message' in alerts:
         print("=============================")
         print("Creating Slack message")
         trigger_slackMessage()       
