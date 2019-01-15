@@ -202,7 +202,6 @@ def trigger_slackMessage():
     )
 
 if __name__ == '__main__':	
-<<<<<<< HEAD
 
     if all(alert_type in alerts for alert_type in ('incident', 'issue', 'message')):		
         print("=============================")

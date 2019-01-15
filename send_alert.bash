@@ -41,6 +41,7 @@ echo "num: $num"
 # Loop through line and add exclusion to array
 for ((i=1;i<=$num+1;i++)); do
        alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
+       alert_type=$(echo "$var | cut -d "," -f $i")
        
        echo "alert_type: $alert_type"
        enable_alerts+=$alert_type
