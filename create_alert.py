@@ -44,12 +44,12 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
-with open('pipeline.config', 'r') as f:
-    pipeline_config = yaml.load(f)
-print("type:", type(pipeline_config))
-job_exclusions = pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]
-print(job_exclusions)
-print(pipeline_config)
+#with open('pipeline.config', 'r') as f:
+#    pipeline_config = yaml.load(f)
+#print("type:", type(pipeline_config))
+#job_exclusions = pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]
+#print(job_exclusions)
+#print(pipeline_config)
 
 
 # Load toolchain json to dict for parsing
