@@ -46,7 +46,7 @@ for ((i=1;i<=$num+1;i++)); do
 done
 
 for ((i=0; i<${#enable_alerts[@]}; i++)); do
-    alerts = eval($enable_alerts[i])
+    alerts = eval(${#enable_alerts[i]})
     print(alerts)
 done
 
