@@ -25,7 +25,7 @@ echo "filename: $filename"
 echo "About to curl"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-var=$(python grab_exclusions.py -c $filename | sed 's/[][]//g')
+var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//g')
 echo "var: $var"
 
 # Retrieve line from exclusion list for current job
