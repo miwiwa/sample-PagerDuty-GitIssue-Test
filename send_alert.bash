@@ -45,10 +45,10 @@ for ((i=1;i<=$num+1;i++)); do
        enable_alerts+=$alert_type
 done
 
-for ((i=0; i<${#enable_alerts[@]}; i++)); do
-    alerts = eval(${#enable_alerts[i]})
-    print(alerts)
-done
+#for ((i=0; i<${#enable_alerts[@]}; i++)); do
+#    alerts = eval(${#enable_alerts[i]})
+#    print(alerts)
+#done
 
 # Call python script to send alerts based on content of array
 if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]] ; then
