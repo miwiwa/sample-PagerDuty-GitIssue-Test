@@ -1,6 +1,7 @@
 import argparse
 from os import environ
 import yaml
+import sys
 
 
 # Read in argument(s)
@@ -23,5 +24,6 @@ with open(config, 'r') as f:
 #print("pipeline_config",pipeline_config)
 
 for x in pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]:
-    print(x)
+    sys.stdout.write(x)
+    sys.stdout.write(";") 
 	#print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
