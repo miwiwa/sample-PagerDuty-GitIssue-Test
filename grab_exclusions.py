@@ -19,5 +19,5 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 with open(config, 'r') as f:
     pipeline_config = yaml.load(f)
  
-pipeline_config = ast.literal_eval(pipeline_config)
-print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
+final_pipeline_config = [ast.literal_eval(i) for i in pipeline_config]
+print(final_pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
