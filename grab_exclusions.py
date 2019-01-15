@@ -20,6 +20,6 @@ with open(config, 'r') as f:
     pipeline_config = yaml.load(f)
  
 #print(set([k for i,j in pipeline_config.items() for k in j if k]))
-print("pipeline_config",pipeline_config)
+#print("pipeline_config",pipeline_config)
 
-print("Exclusions:", pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
+print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
