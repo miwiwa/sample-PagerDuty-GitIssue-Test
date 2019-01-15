@@ -238,8 +238,4 @@ if __name__ == '__main__':
         trigger_slackMessage()       
     else:
         print("ERROR: Alert type was not specified in call")
-
-=======
-	print("=============================")
->>>>>>> e0d73accab2cac493d6eaa7e4a7be26839e7ee3b
 	
