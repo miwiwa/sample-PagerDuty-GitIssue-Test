@@ -30,7 +30,7 @@ echo "out: $out"
 #var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//; s/''//g')
 
 
-var=$(python grab_exclusions.py -c $filename | sed 's/'[][] //g')
+var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//g')
 echo "var: $var"
 
 # Retrieve line from exclusion list for current job
