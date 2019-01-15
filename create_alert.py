@@ -185,6 +185,10 @@ def trigger_slackMessage():
     elif job_status == 'fail':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
+    elif job_status == 'executed':
+        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
+        #d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
+
     else:
         print("Slack message not sent due to unknown status")
     
