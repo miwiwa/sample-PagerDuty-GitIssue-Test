@@ -19,8 +19,8 @@ fi
 
 
 # exclude file contains list of alerts not to send
-filename="notification.exclude.conf"
-#filename="pipeline.config"
+#filename="notification.exclude.conf"
+filename="pipeline.config"
 echo "filename: $filename"
 echo "About to curl"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
