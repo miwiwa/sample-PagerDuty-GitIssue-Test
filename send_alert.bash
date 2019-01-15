@@ -17,6 +17,7 @@ else
   slack_status=="executed"
 fi
 
+echo "slack_status:, $slack_status"
 
 # exclude file contains list of alerts not to send
 #filename="notification.exclude.conf"
