@@ -38,13 +38,17 @@ else:
   print "boo" 
 # output exclusions for specific job
 #if param_value in pipeline_config.values():
-if param_value in pipeline_config:    
-    if param_value in pipeline_config.keys():
-        for exc in pipeline_config[param_value][ids_job_name]:
-            sys.stdout.write(';')
-            sys.stdout.write(exc) 
+#if param_value in pipeline_config:
+for key in pipeline_config:
+    if key in param_value:
+        if key in "EXCLUSIONS"
+            for exc in pipeline_config[param_value][ids_job_name]:
+                sys.stdout.write(';')
+                sys.stdout.write(exc)
+        else:
+        sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"]))
     else:
-        sys.stdout.write(pipeline_config.get(param_value[, "Value doesn't exist"]))
-else:
-    print(param_value, "not found in", config)
-    exit()
+        print(param_value, "not found in", config)
+        exit()
+    
+
