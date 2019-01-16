@@ -12,6 +12,7 @@ parser.add_argument('-d', '--value', nargs='?', type=str.upper, dest='VALUE', he
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
+print("param_value:", param_value)
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
