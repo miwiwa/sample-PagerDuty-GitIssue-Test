@@ -3,27 +3,34 @@ from os import environ
 import yaml
 import sys
 
-
 # Read in argument(s)
-description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
+description = 'Retrieve list of exclusions for specific job'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search", required=True)
-#parser.add_argument('-s', '--VALUE', nargs='+', type=str.lower, dest='VALUE', help="Enter values to scan for", required=True)
+parser.add_argument('-d', '--value', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
 args = parser.parse_args()
 config = args.CONFIG
-
+param_value = args.VALUE
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 
+# read in config file
 with open(config, 'r') as f:
-    pipeline_config = yaml.load(f)
- 
-#print(set([k for i,j in pipeline_config.items() for k in j if k]))
-#print("pipeline_config",pipeline_config)
-
-for x in pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]:
-    sys.stdout.write(';')
-    sys.stdout.write(x) 
-	#print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
+    try:
+        pipeline_config = yaml.load(f)
+    except yaml.YAMLError as exc:
+        print(exc)
+        
+# output exclusions for specific job
+if param_value in pipeline_config:
+    if param_value == "EXCLUSIONS"
+        for exc in pipeline_config[param_value][ids_job_name]:
+            sys.stdout.write(';')
+            sys.stdout.write(exc) 
+    else:
+        sys.stdout.write(pipeline_config.get(param_value))
+else:
+    print(param_value, "not found in", config)
+    exit()

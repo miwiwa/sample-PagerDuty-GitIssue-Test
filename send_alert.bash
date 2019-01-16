@@ -20,37 +20,28 @@ fi
 echo "slack_status:, $slack_status"
 
 # exclude file contains list of alerts not to send
-#filename="notification.exclude.conf"
 filename="pipeline.config"
 echo "filename: $filename"
 echo "About to curl"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-var=$(python grab_exclusions.py -c $filename)
-#echo "out: $out"
-#var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//; s/''//g')
+var=$(python grab_exclusions.py -c $filename -d exclusions)
 
-
-#var=$(python grab_exclusions.py -c $filename | sed 's/'[][]'//g')
 echo "var: $var"
 
 # Retrieve line from exclusion list for current job
-#var=$(grep $IDS_JOB_NAME $filename | sed 's:[^;]*/\(.*\):\1:')
-#echo "var: $var"
+
 num=$(echo $var | tr -cd ';' | wc -c)
 echo "num: $num"
 # Loop through line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
        alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
-       #alert_type=$(echo "\"$var"\ | cut -d "," -f $i")
+       
        enable_alerts+=$alert_type
 done
 
 echo ${enable_alerts[*]}
-#for ((i=0; i<${#enable_alerts[@]}; i++)); do
-#    alerts = eval(${#enable_alerts[i]})
-#    print(alerts)
-#done
+
 
 # Call python script to send alerts based on content of array
 if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]] ; then

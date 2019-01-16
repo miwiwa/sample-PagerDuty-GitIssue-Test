@@ -44,20 +44,13 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
-#with open('pipeline.config', 'r') as f:
-#    pipeline_config = yaml.load(f)
-#print("type:", type(pipeline_config))
-#job_exclusions = pipeline_config['ALERT_EXCLUSIONS'][ids_job_name]
-#print(job_exclusions)
-#print(pipeline_config)
-
-
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
     data = json.load(f)
 
+# Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
 ids_instance_id = instance_id[0]
@@ -195,8 +188,9 @@ def trigger_slackMessage():
     
     data = json.dumps(d)
    
-    web_hook_url = 'https://hooks.slack.com/services/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'
-  
+    #web_hook_url = 'https://hooks.slack.com/services/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'
+    web_hook_url = subprocess.call(["python", "grab_exclusions.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
+    
     response = requests.post(web_hook_url, headers=headers, data=data)
    
     if response.status_code != 200:
