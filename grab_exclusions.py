@@ -26,8 +26,12 @@ with open(config, 'r') as f:
  
 print(pipeline_config)
 
+values = pipeline_config.values()
+print(values)
+ 
 # output exclusions for specific job
-if param_value in pipeline_config.values():
+#if param_value in pipeline_config.values():
+if param_value in [x for v in values for x in v if type(v)==list] or param_value in values    
     if param_value in 'EXCLUSIONS':
         for exc in pipeline_config[param_value][ids_job_name]:
             sys.stdout.write(';')
