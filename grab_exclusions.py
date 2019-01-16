@@ -23,7 +23,8 @@ with open(config, 'r') as f:
         pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
         print(exc)
- 
+print("Type:",type(pipeline_config))
+
 print(pipeline_config)
 
 values = pipeline_config.values()
