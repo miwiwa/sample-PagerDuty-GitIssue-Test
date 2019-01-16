@@ -23,7 +23,9 @@ with open(config, 'r') as f:
         pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
         print(exc)
-        
+ 
+print(pipeline_config)
+
 # output exclusions for specific job
 if param_value in pipeline_config.values():
     if param_value in 'EXCLUSIONS':
