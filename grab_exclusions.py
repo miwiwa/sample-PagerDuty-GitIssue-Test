@@ -25,7 +25,7 @@ with open(config, 'r') as f:
         print(exc)
 print("Type:",type(pipeline_config))
 
-x = isinstance(pipeline_config, (list, dict))
+x = isinstance(pipeline_config, (dict))
 print("x",x)
 print(pipeline_config)
 
