@@ -29,6 +29,10 @@ print(pipeline_config)
 values = pipeline_config.values()
 print(values)
  
+if param_value in pipeline_config:
+  print "blah"
+else:
+  print "boo" 
 # output exclusions for specific job
 #if param_value in pipeline_config.values():
 if param_value in [x for v in values for x in v if type(v)==list] or param_value in values:    
