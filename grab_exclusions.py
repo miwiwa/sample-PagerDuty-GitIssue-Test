@@ -41,7 +41,7 @@ else:
 #if param_value in pipeline_config:
 for key in pipeline_config:
     if key in param_value:
-        if key in "EXCLUSIONS"
+        if key in "EXCLUSIONS":
             for exc in pipeline_config[param_value][ids_job_name]:
                 sys.stdout.write(';')
                 sys.stdout.write(exc)
