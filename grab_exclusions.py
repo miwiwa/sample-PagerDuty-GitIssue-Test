@@ -58,7 +58,7 @@ def get_config_value(data, target):
             yield value    
 
 def main():
-    for x in find_by_key(config, param_value):
+    for x in get_config_value(config, param_value):
         print(x)
         
 if __name__ == '__main__':
