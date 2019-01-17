@@ -13,7 +13,7 @@ parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', he
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
-exclusions - args.EXCLUSIONS
+#exclusions - args.EXCLUSIONS
 
 
 # Import Pipeline environment variables 
