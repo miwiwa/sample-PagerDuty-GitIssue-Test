@@ -27,9 +27,7 @@ with open(config, 'r') as f:
         print(exc)
 
 
-values = pipeline_config.values()
-print(values)
- 
+values = pipeline_config.values() 
  
 #print("keys:",[k for k,v in pipeline_config.items()])
 #print("values:",[v for k,v in pipeline_config.items()])
