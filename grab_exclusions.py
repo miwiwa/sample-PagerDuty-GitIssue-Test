@@ -52,6 +52,5 @@ for key in pipeline_config:
     else:
        # print(param_value, "not found in", config)
         print("Key not in param_value")
-        exit()
     
 
