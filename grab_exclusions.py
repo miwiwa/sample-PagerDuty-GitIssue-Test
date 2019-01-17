@@ -49,7 +49,7 @@ for key in pipeline_config:
 
 #def get_config_value()
 def get_config_value(data, target):
-    for key, value in data.items():
+    for key, value in data['CD'].items():
     	print("target:", target)
     	print("key:", key)
     	print("value:", value)
