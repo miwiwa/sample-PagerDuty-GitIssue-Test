@@ -14,6 +14,7 @@ import re
 import sys
 import yaml
 import datetime
+import grab_exclusions
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
@@ -190,7 +191,8 @@ def trigger_slackMessage():
    
     #web_hook_url = 'https://hooks.slack.com/services/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'
     web_hook_url = subprocess.call(["python", "grab_exclusions.py", "-c", 'pipeline.config', "-d", 'ALERT_EXCLUSIONS'])
-    
+    exclusions = grab_exclusions.get_exclusions()
+    print("exclusions:", exclusions)
     response = requests.post(web_hook_url, headers=headers, data=data)
    
     if response.status_code != 200:

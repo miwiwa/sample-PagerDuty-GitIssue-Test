@@ -31,7 +31,10 @@ print(pipeline_config)
 
 values = pipeline_config.values()
 print(values)
- 
+
+
+def get_exclusions():
+    print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
  
  
 print("keys:",[k for k,v in pipeline_config.items()])
