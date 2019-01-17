@@ -12,7 +12,7 @@ parser.add_argument('-d', '--value', nargs='?', type=str.upper, dest='VALUE', he
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
-print("param_value:", param_value)
+
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -24,7 +24,6 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
-print(pipeline_config)
 
 values = pipeline_config.values()
 print(values)
@@ -41,7 +40,6 @@ for key in pipeline_config:
             for exc in pipeline_config[param_value][ids_job_name]:
                 sys.stdout.write(';')
                 sys.stdout.write(exc)
-                exit()
         else:
             print("Exclusions not in param_value")
             sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))

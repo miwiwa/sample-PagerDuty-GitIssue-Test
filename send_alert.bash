@@ -21,8 +21,7 @@ echo "slack_status:, $slack_status"
 
 # exclude file contains list of alerts not to send
 filename="pipeline.config"
-echo "filename: $filename"
-echo "About to curl"
+
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
 var=$(python grab_exclusions.py -c $filename -d "ALERT_EXCLUSIONS")
