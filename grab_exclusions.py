@@ -32,10 +32,7 @@ print(pipeline_config)
 values = pipeline_config.values()
 print(values)
  
-if param_value in pipeline_config:
-  print "blah"
-else:
-  print "boo" 
+ 
  
 print("keys:",[k for k,v in pipeline_config.items()])
 print("values:",[v for k,v in pipeline_config.items()])
@@ -43,6 +40,7 @@ print("values:",[v for k,v in pipeline_config.items()])
 #if param_value in pipeline_config.values():
 #if param_value in pipeline_config:
 for key in pipeline_config:
+    print("key:",key)
     if key in param_value:
         if "EXCLUSIONS" in param_value:
             for exc in pipeline_config[param_value][ids_job_name]:
