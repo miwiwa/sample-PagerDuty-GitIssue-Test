@@ -52,6 +52,9 @@ for key in pipeline_config:
 #def get_config_value()
 def get_config_value(data, target):
     for key, value in data.items():
+    	print("target:", target)
+    	print("key:", key)
+    	print("value:", value)
         if isinstance(value, dict):
             yield get_config_value(value, target)
         elif key == target:
