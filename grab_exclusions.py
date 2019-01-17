@@ -23,10 +23,7 @@ with open(config, 'r') as f:
         pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
         print(exc)
-print("Type:",type(pipeline_config))
 
-x = isinstance(pipeline_config, dict)
-print("x",x)
 print(pipeline_config)
 
 values = pipeline_config.values()
@@ -37,18 +34,18 @@ def get_exclusions():
     print(pipeline_config['ALERT_EXCLUSIONS'][ids_job_name])
  
  
-print("keys:",[k for k,v in pipeline_config.items()])
-print("values:",[v for k,v in pipeline_config.items()])
+#print("keys:",[k for k,v in pipeline_config.items()])
+#print("values:",[v for k,v in pipeline_config.items()])
 # output exclusions for specific job
 #if param_value in pipeline_config.values():
 #if param_value in pipeline_config:
 for key in pipeline_config:
-    print("key:",key)
     if key in param_value:
         if "EXCLUSIONS" in param_value:
             for exc in pipeline_config[param_value][ids_job_name]:
                 sys.stdout.write(';')
                 sys.stdout.write(exc)
+                exit()
         else:
             print("Exclusions not in param_value")
             sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
