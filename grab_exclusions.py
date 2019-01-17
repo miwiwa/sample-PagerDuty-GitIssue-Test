@@ -13,6 +13,7 @@ parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', he
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
+exclusions - args.EXCLUSIONS
 
 
 # Import Pipeline environment variables 
@@ -49,5 +50,16 @@ for key in pipeline_config:
         print("Key not in param_value")
 
 #def get_config_value()
-    
+def get_config_value(data, target):
+    for key, value in data.items():
+        if isinstance(value, dict):
+            yield from get_config_value(value, target)
+        elif key == target:
+            yield value    
 
+def main():
+    for x in find_by_key(config, param_value):
+        print(x)
+        
+if __name__ == '__main__':
+    main()
