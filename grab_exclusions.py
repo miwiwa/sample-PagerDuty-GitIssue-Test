@@ -49,9 +49,11 @@ for key in pipeline_config:
                 sys.stdout.write(';')
                 sys.stdout.write(exc)
         else:
+            print("Exclusions not in param_value")
             sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
     else:
        # print(param_value, "not found in", config)
+        print("Key not in param_value")
         exit()
     
 
