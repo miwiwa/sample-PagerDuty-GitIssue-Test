@@ -17,7 +17,7 @@ exclusions = args.EXCLUSIONS
 
 print("param_value:", param_value)
 
-
+print("WE ARE EXECUTING EVERYTIHNG ABOVE MAIN BLOCK!!!!!!!!")
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 print("ids_job_name", ids_job_name)
