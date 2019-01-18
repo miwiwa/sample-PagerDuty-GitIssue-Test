@@ -49,17 +49,17 @@ for key in pipeline_config:
 #def get_config_value()
 def get_config_value(data, target):
     for key, value in data['CD'].items():
-    	print("target:", target)
-    	print("key:", key)
-    	print("value:", value)
+    	#print("target:", target)
+    	#print("key:", key)
+    	#print("value:", value)
         if isinstance(value, dict):
             print("value is dict")
-            yield get_config_value(value, target)
+            return get_config_value(value, target)
         elif key == target:
             print("key equals target")
             print("target", target)
             print("key", key)
-            yield value    
+            return value    
 
 def main():
     config_value = get_config_value(pipeline_config, param_value)
