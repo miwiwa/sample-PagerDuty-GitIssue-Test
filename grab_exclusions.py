@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search", required=True)
 parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
-parser.add_argument('-z', '--zzzzz', dest='ZZZZZ', action='store_true'))
+parser.add_argument('-z', '--zzzzz', dest='ZZZZZ', action='store_true')
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
