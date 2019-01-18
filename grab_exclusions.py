@@ -73,7 +73,7 @@ def main():
     if "ALERT_EXCLUSIONS" in exclusions:
      #   print("Main found alert exclusions")
         alerts = get_job_exclusions()
-        #print("alerts:", alerts)
+        print("alerts:", alerts)
     elif param_value:
         config_value = get_config_value(pipeline_config, param_value)
         print(config_value)
