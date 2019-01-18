@@ -70,6 +70,7 @@ def get_config_value(data, target):
 
 def main():
     
+    print("exclusions:", exclusions)
     if "ALERT_EXCLUSIONS" in exclusions:
      #   print("Main found alert exclusions")
         alerts = get_job_exclusions()
