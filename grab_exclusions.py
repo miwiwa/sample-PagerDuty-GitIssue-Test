@@ -15,6 +15,8 @@ config = args.CONFIG
 param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 
+print("param_value:", param_value)
+
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
