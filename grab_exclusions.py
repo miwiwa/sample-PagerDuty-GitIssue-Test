@@ -71,7 +71,7 @@ def get_config_value(data, target):
             return value    
 
 def main():
-    print("z:", zß)
+    print("z:", z)
     print("exclusions:", exclusions)
     if "ALERT_EXCLUSIONS" in exclusions:
      #   print("Main found alert exclusions")
