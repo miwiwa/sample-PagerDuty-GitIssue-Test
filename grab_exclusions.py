@@ -15,8 +15,6 @@ config = args.CONFIG
 param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 
-print("param_value:", param_value)
-
 print("WE ARE EXECUTING EVERYTIHNG ABOVE MAIN BLOCK!!!!!!!!")
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -29,7 +27,7 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
-print("pipeline_config:", pipeline_config)
+
 values = pipeline_config.values() 
  
 def get_job_exclusions():
@@ -71,16 +69,17 @@ def get_config_value(data, target):
             return value    
 
 def main():
-    print("ids_job_name", ids_job_name)
+    
     if "ALERT_EXCLUSIONS" in exclusions:
         print("Main found alert exclusions")
         alerts = get_job_exclusions()
+        print("alerts:", alerts)
     elif param_value:
         config_value = get_config_value(pipeline_config, param_value)
         print(config_value)
     else:
         print("parameter not passed correctly")
-    
+    print("alerts2:", alerts)
     return alerts
 if __name__ == '__main__':
     main()
