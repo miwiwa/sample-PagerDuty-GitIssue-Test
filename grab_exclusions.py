@@ -26,7 +26,6 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
-
 values = pipeline_config.values() 
  
 #print("keys:",[k for k,v in pipeline_config.items()])
