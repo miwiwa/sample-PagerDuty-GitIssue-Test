@@ -39,8 +39,9 @@ def get_job_exclusions():
       #      if "EXCLUSIONS" in param_value:
     exclude = ""
     for exc in pipeline_config[exclusions][ids_job_name]:
-        print("exc", exc)
+       # print("exc", exc)
         exclude += ";" + exc
+        print("exclude:", exclude)
     return exclude
        # print("exclude:", exclude)
         #print("exclude", exc)
