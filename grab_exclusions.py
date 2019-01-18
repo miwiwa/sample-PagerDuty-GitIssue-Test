@@ -29,6 +29,7 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
+print("pipeline_config:", pipeline_config)
 values = pipeline_config.values() 
  
 def get_job_exclusions():
