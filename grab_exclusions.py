@@ -25,7 +25,7 @@ with open(config, 'r') as f:
     try:
         pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
-    #    print(exc)
+        print(exc)
 
 
 #values = pipeline_config.values() 
