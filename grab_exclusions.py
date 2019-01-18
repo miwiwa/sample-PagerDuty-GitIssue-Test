@@ -59,9 +59,9 @@ def get_config_value(data, target):
             return value    
 
 def main():
-    print("exclusions:", exclusions)
+    print("Main exclusions:", exclusions)
     if "ALERT_EXCLUSIONS" in exclusions:
-        print("found alert exclusions")
+        print("Main found alert exclusions")
         get_job_exclusions()
     else:
         config_value = get_config_value(pipeline_config, param_value)
