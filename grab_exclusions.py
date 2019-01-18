@@ -62,7 +62,7 @@ def get_config_value(data, target):
             yield value    
 
 def main():
-    config_value = get_config_value(pipeline_config, param_value):
+    config_value = get_config_value(pipeline_config, param_value)
         print(config_values)
         
 if __name__ == '__main__':
