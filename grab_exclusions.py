@@ -65,9 +65,10 @@ def get_config_value(data, target):
             print("value is dict")
             return get_config_value(value, target)
         elif key == target:
-            print("key equals target")
-            print("target", target)
-            print("key", key)
+            #print("key equals target")
+            #print("target", target)
+            #print("key", key)
+            print(value)
             return value    
 
 def main():
