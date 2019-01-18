@@ -35,9 +35,10 @@ def get_job_exclusions():
       #      if "EXCLUSIONS" in param_value:
     exclude = ""
     for exc in pipeline_config[exclusions][ids_job_name]:
-        exclude = sys.stdout.write(';')
-        exclude += exc
-    return exclude
+        print("exc", exc)
+        #exclude = sys.stdout.write(';')
+        #exclude += exc
+    #return exclude
           #  else:
            #     print("Exclusions not in param_value")
             #    sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
