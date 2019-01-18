@@ -31,7 +31,7 @@ echo "var: $var"
 # Retrieve line from exclusion list for current job
 
 num=$(echo $var | tr -cd ';' | wc -c)
-print("num:", num)
+echo "num: $num")
 # Loop through line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
        alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
