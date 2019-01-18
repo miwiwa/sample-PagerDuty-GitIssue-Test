@@ -29,18 +29,19 @@ with open(config, 'r') as f:
 values = pipeline_config.values() 
  
 def get_job_exclusions():
-    for key in pipeline_config:
-        if key in param_value:
-            if "EXCLUSIONS" in param_value:
-                for exc in pipeline_config[param_value][ids_job_name]:
-                    sys.stdout.write(';')
-                    sys.stdout.write(exc)
-            else:
-                print("Exclusions not in param_value")
-                sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
-        else:
+    print(pipeline_config[exclusions][ids_job_name])
+    #for key in pipeline_config:
+     #   if key in param_value:
+      #      if "EXCLUSIONS" in param_value:
+       #         for exc in pipeline_config[param_value][ids_job_name]:
+        #            sys.stdout.write(';')
+         #           sys.stdout.write(exc)
+          #  else:
+           #     print("Exclusions not in param_value")
+            #    sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
+       # else:
            # print(param_value, "not found in", config)
-            print("Key not in param_value")
+        #    print("Key not in param_value")
 
 #def get_config_value()
 def get_config_value(data, target):
