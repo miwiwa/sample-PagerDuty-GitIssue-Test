@@ -22,7 +22,7 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 # read in config file
 with open(config, 'r') as f:
     try:
-        pipeline_config = yaml.load(f)
+        pipeline_config = yaml.load(f),default_flow_style=False)
     except yaml.YAMLError as exc:
         print(exc)
 
@@ -54,8 +54,12 @@ def get_config_value(data, target):
     	print("key:", key)
     	print("value:", value)
         if isinstance(value, dict):
+            print("value is dict")
             yield get_config_value(value, target)
         elif key == target:
+            print("key equals target")
+            print("target", target)
+            print("key", key)
             yield value    
 
 def main():
