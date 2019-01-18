@@ -37,6 +37,7 @@ def get_job_exclusions():
     for exc in pipeline_config[exclusions][ids_job_name]:
         print("exc", exc)
         exclude += ";" + exc
+        print("exclude:", exclude)
         #print("exclude", exc)
         #exclude = sys.stdout.write(';')
         #exclude += exc
