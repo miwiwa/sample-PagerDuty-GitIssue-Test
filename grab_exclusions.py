@@ -22,7 +22,7 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 # read in config file
 with open(config, 'r') as f:
     try:
-        pipeline_config = yaml.load(f),default_flow_style=False)
+        pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
         print(exc)
 
