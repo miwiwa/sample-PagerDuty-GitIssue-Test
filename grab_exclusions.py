@@ -20,6 +20,7 @@ print("param_value:", param_value)
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
+print("ids_job_name", ids_job_name)
 
 # read in config file
 with open(config, 'r') as f:
@@ -68,6 +69,7 @@ def get_config_value(data, target):
             return value    
 
 def main():
+    print("ids_job_name", ids_job_name)
     if "ALERT_EXCLUSIONS" in exclusions:
         print("Main found alert exclusions")
         alerts = get_job_exclusions()
