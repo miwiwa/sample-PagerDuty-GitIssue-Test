@@ -13,7 +13,7 @@ parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', he
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
-#exclusions - args.EXCLUSIONS
+exclusions - args.EXCLUSIONS
 
 
 # Import Pipeline environment variables 
@@ -28,23 +28,19 @@ with open(config, 'r') as f:
 
 values = pipeline_config.values() 
  
-#print("keys:",[k for k,v in pipeline_config.items()])
-#print("values:",[v for k,v in pipeline_config.items()])
-# output exclusions for specific job
-#if param_value in pipeline_config.values():
-#if param_value in pipeline_config:
-for key in pipeline_config:
-    if key in param_value:
-        if "EXCLUSIONS" in param_value:
-            for exc in pipeline_config[param_value][ids_job_name]:
-                sys.stdout.write(';')
-                sys.stdout.write(exc)
+def get_job_exclusions():
+    for key in pipeline_config:
+        if key in param_value:
+            if "EXCLUSIONS" in param_value:
+                for exc in pipeline_config[param_value][ids_job_name]:
+                    sys.stdout.write(';')
+                    sys.stdout.write(exc)
+            else:
+                print("Exclusions not in param_value")
+                sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
         else:
-            print("Exclusions not in param_value")
-            sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
-    else:
-       # print(param_value, "not found in", config)
-        print("Key not in param_value")
+           # print(param_value, "not found in", config)
+            print("Key not in param_value")
 
 #def get_config_value()
 def get_config_value(data, target):
@@ -62,8 +58,13 @@ def get_config_value(data, target):
             return value    
 
 def main():
-    config_value = get_config_value(pipeline_config, param_value)
-    print(config_value)
+    print("exclusions:", exclusions)
+    if "ALERT_EXCLUSIONS" in exclusions:
+        print("found alert exclusions")
+        get_job_exclusions()
+    else:
+        config_value = get_config_value(pipeline_config, param_value)
+        print(config_value)
         
 if __name__ == '__main__':
     main()
