@@ -72,9 +72,9 @@ def main():
         print("Main found alert exclusions")
         alerts = get_job_exclusions()
     return alerts
-    elif param_value:
-        config_value = get_config_value(pipeline_config, param_value)
-        print(config_value)
+    #elif param_value:
+     #   config_value = get_config_value(pipeline_config, param_value)
+      #  print(config_value)
     else:
         print("parameter not passed correctly")
         
