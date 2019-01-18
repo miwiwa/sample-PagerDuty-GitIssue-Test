@@ -71,10 +71,10 @@ def get_config_value(data, target):
             return value    
 
 def main():
-   # print("z:", z)
+    print("z:", z)
     #print("exclusions:", exclusions)
     if z:
-     #   print("Main found alert exclusions")
+        print("Main found alert exclusions")
         alerts = get_job_exclusions()
         print("alerts:", alerts)
     elif param_value:
