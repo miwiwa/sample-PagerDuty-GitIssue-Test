@@ -32,7 +32,7 @@ echo "var: $var"
 
 num=$(echo $var | tr -cd ';' | wc -c)
 echo "num: $num"
-# Loop through line and add exclusion to array
+# Loop throughr line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
        alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
        
