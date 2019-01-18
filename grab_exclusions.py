@@ -28,7 +28,7 @@ with open(config, 'r') as f:
     #    print(exc)
 
 
-values = pipeline_config.values() 
+#values = pipeline_config.values() 
  
 def get_job_exclusions():
     #print(pipeline_config[exclusions][ids_job_name])
