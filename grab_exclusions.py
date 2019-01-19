@@ -68,7 +68,6 @@ def get_config_value(data, target):
             #print("key equals target")
             #print("target", target)
             #print("key", key)
-            print(value)
             return value    
 
 def main():

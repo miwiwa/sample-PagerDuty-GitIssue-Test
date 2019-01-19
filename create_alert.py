@@ -186,7 +186,6 @@ def trigger_slackMessage():
     else:
         print("Slack message not sent due to unknown status")
     
-    
     data = json.dumps(d)
    
     print("calling function to retrieve web hook")
@@ -194,7 +193,7 @@ def trigger_slackMessage():
     web_hook_url = subprocess.check_output(["python", "grab_exclusions.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
     print("webhookurl", web_hook_url)
     response = requests.post(web_hook_url, headers=headers, data=data)
-   
+    print("response:", response)
     if response.status_code != 200:
         raise ValueError(
             'Request to slack returned an error %s, the response is:\n%s'
