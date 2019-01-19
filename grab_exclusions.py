@@ -60,9 +60,9 @@ def get_config_value(data, target):
     #for key, value in data['CD'].items():
     print("keys:", data.keys())
     for key, value in data.items():
-    	print("target:", target)
-    	print("key:", key)
-    	print("value:", value)
+    	#print("target:", target)
+    	#print("key:", key)
+    	#print("value:", value)
         if isinstance(value, dict):
             print("value is dict")
             return get_config_value(value, target)
@@ -80,7 +80,7 @@ def main():
         return alerts
     elif param_value:
         config_value = get_config_value(pipeline_config, param_value)
-        print(config_value)
+    #    print(config_value)
     else:
         print("parameter not passed correctly")
     #print("alerts2:", alerts)
