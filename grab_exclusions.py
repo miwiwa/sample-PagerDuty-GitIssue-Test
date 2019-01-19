@@ -30,12 +30,17 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
-def nested_dict_iter(nested):
-    for key, value in nested.items():
-        if isinstance(value, abc.Mapping):
-            print nested_dict_iter(value)
-        else:
-            print key, value
+def myprint(d): 
+  stack = list(d.items()) 
+  visited = set() 
+  while stack: 
+    k, v = stack.pop() 
+    if isinstance(v, dict): 
+      if k not in visited: 
+        stack.extend(v.items()) 
+      else: 
+        print("%s: %s" % (k, v)) 
+      visited.add(k)
  
 def get_job_exclusions():    
     exclude = ""
@@ -62,7 +67,7 @@ def get_config_value(data, target):
             return value.strip("\n")    
 
 def main():
-    nested_dict_iter(pipeline_config)
+    myprint(pipeline_config)
     if z:
         print("Main found alert exclusions")
         alerts = get_job_exclusions()
