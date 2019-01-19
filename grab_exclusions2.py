@@ -57,11 +57,10 @@ def get_job_exclusions():
 
 #def get_config_value()
 def get_config_value(data, target):
-    #for key, value in data['CD'].items():
-    for key, value in data.items():
-    	print("target:", target)
-    	print("key:", key)j
-    	print("value:", value)
+    for key, value in data['CD'].items():
+    	#print("target:", target)
+    	#print("key:", key)j
+    	#print("value:", value)
         if isinstance(value, dict):
             print("value is dict")
             return get_config_value(value, target)
