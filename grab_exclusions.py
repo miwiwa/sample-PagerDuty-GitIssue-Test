@@ -40,7 +40,7 @@ def get_job_exclusions():
 
 def get_config_value(data, target):
     #for key, value in data['CD'].items():
-    print("keys:", data.keys())
+    print("keys2222:", data.keys())
     for key, value in data.items():
     	#print("target:", target)
     	#print("key:", key)
