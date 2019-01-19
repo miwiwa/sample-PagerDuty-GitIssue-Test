@@ -2,6 +2,7 @@ import argparse
 from os import environ
 import yaml
 import sys
+from collections import abc
 
 # Read in argument(s)
 description = 'Retrieve list of exclusions for specific job'
@@ -29,6 +30,12 @@ with open(config, 'r') as f:
     except yaml.YAMLError as exc:
         print(exc)
 
+def nested_dict_iter(nested):
+    for key, value in nested.items():
+        if isinstance(value, abc.Mapping):
+            print nested_dict_iter(value)
+        else:
+            print key, value
  
 def get_job_exclusions():    
     exclude = ""
@@ -55,6 +62,7 @@ def get_config_value(data, target):
             return value.strip("\n")    
 
 def main():
+    nested_dict_iter(pipeline_config)
     if z:
         print("Main found alert exclusions")
         alerts = get_job_exclusions()
