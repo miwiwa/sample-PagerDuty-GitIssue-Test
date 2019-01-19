@@ -60,7 +60,7 @@ def get_config_value(data, target):
     #for key, value in data['CD'].items():
     for key, value in data.items():
     	print("target:", target)
-    	print("key:", key)j
+    	print("key:", key)
     	print("value:", value)
         if isinstance(value, dict):
             print("value is dict")
