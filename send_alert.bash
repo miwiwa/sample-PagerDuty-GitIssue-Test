@@ -25,7 +25,7 @@ filename="pipeline.config"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
 var=$(python grab_exclusions.py -c $filename -e "ALERT_EXCLUSIONS" -z)
-var=$(python grab_exclusions.py -c $filename -z)
+#var=$(python grab_exclusions.py -c $filename -z)
 
 echo "var: $var"
 
