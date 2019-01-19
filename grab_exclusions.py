@@ -17,33 +17,49 @@ param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 z = args.ZZZZZ
 
-
+#print("WE ARE EXECUTING EVERYTIHNG ABOVE MAIN BLOCK!!!!!!!!")
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 #print("ids_job_name", ids_job_name)
 
-# read in config filen
+# read in config file
 with open(config, 'r') as f:
     try:
         pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
         print(exc)
 
+
+#values = pipeline_config.values() 
  
-def get_job_exclusions():    
+def get_job_exclusions():
+    #print(pipeline_config[exclusions][ids_job_name])
+    #for key in pipeline_config:
+     #   if key in param_value:
+      #      if "EXCLUSIONS" in param_value:
     exclude = ""
-    for exc in pipeline_config[exclusions][ids_job_name]:      
-        exclude += ";" + exc     
+    for exc in pipeline_config[exclusions][ids_job_name]:
+       # print("exc", exc)
+        exclude += ";" + exc
+       # print("exclude:", exclude)
     return exclude
-       
+       # print("exclude:", exclude)
+        #print("exclude", exc)
+        #exclude = sys.stdout.write(';')
+        #exclude += exc
+    #return exclude
+          #  else:
+           #     print("Exclusions not in param_value")
+            #    sys.stdout.write(pipeline_config.get(param_value, "Value doesn't exist"))
+       # else:
+           # print(param_value, "not found in", config)
+        #    print("Key not in param_value")
 
-
+#def get_config_value()
 def get_config_value(data, target):
-    #for key, value in data['CD'].items():
-    print("keys:", data.keys())
-    for key, value in data.items():
+    for key, value in data['CD'].items():
     	#print("target:", target)
-    	#print("key:", key)
+    	#print("key:", key)j
     	#print("value:", value)
         if isinstance(value, dict):
             print("value is dict")
@@ -62,7 +78,7 @@ def main():
         return alerts
     elif param_value:
         config_value = get_config_value(pipeline_config, param_value)
-    #    print(config_value)
+        print(config_value)
     else:
         print("parameter not passed correctly")
     #print("alerts2:", alerts)
