@@ -30,7 +30,8 @@ with open(config, 'r') as f:
         print(exc)
 
 def myprint(d): 
-  stack = list(d.items()) 
+  stack = list(d.items())
+  print("stack:", stack)
   visited = set() 
   while stack: 
     k, v = stack.pop() 
