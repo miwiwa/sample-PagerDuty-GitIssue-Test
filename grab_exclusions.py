@@ -2,7 +2,6 @@ import argparse
 from os import environ
 import yaml
 import sys
-from collections import abc
 
 # Read in argument(s)
 description = 'Retrieve list of exclusions for specific job'
