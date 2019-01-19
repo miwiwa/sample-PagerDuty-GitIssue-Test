@@ -22,7 +22,7 @@ z = args.ZZZZZ
 ids_job_name = environ.get('IDS_JOB_NAME')
 #print("ids_job_name", ids_job_name)
 
-# read in config file
+# read in config filen
 with open(config, 'r') as f:
     try:
         pipeline_config = yaml.load(f)
