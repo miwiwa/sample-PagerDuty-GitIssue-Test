@@ -16,6 +16,7 @@ config = args.CONFIG
 param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 z = args.ZZZZZ
+print("z:",z)
 
 
 # Import Pipeline environment variables 
@@ -76,7 +77,7 @@ def main():
         return alerts
     elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
-        myprint(pipeline_config)
+        #myprint(param_value)
     #    print(config_value)
     else:
         print("parameter not passed correctly")
