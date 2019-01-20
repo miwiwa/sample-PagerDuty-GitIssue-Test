@@ -31,7 +31,7 @@ with open(config, 'r') as f:
 
 def myprint(d): 
   stack = list(d.items())
-  print("stack:", stack)
+ # print("stack:", stack)
   visited = set() 
   while stack: 
     k, v = stack.pop() 
@@ -50,7 +50,6 @@ def get_job_exclusions():
         exclude += ";" + exc     
     return exclude
        
-
 
 def get_config_value(data, target):
     #for key, value in data['CD'].items():
@@ -76,7 +75,8 @@ def main():
         print("alerts:", alerts)
         return alerts
     elif param_value:
-        config_value = get_config_value(pipeline_config, param_value)
+        #config_value = get_config_value(pipeline_config, param_value)
+        myprint(pipeline_config)
     #    print(config_value)
     else:
         print("parameter not passed correctly")
