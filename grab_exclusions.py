@@ -69,15 +69,15 @@ def get_config_value(data, target):
             return value.strip("\n")    
 
 def main():
-    myprint(pipeline_config)
+   # myprint(pipeline_config)
     if z:
-        print("Main found alert exclusions")
+    #    print("Main found alert exclusions")
         alerts = get_job_exclusions()
         print("alerts:", alerts)
         return alerts
-    #elif param_value:
+    elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
-        #myprint(param_value)
+        myprint(pipeline_config)
     #    print(config_value)
     else:
         print("parameter not passed correctly")
