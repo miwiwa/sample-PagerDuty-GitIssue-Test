@@ -75,7 +75,7 @@ def main():
         alerts = get_job_exclusions()
         print("alerts:", alerts)
         return alerts
-    elif param_value:
+    #elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
         #myprint(param_value)
     #    print(config_value)
