@@ -16,7 +16,7 @@ config = args.CONFIG
 param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 z = args.ZZZZZ
-print("z:",z)
+#print("z:",z)
 
 
 # Import Pipeline environment variables 
@@ -54,7 +54,7 @@ def get_job_exclusions():
 
 def get_config_value(data, target):
     #for key, value in data['CD'].items():
-    print("keys2222:", data.keys())
+    #print("keys2222:", data.keys())
     for key, value in data.items():
     	#print("target:", target)
     	#print("key:", key)
