@@ -48,13 +48,15 @@ def retrieve_config_value(config_file, param):
       visited.add(k)
  
 def get_job_exclusions(config, exclusions, ids_job_name):    
-    exclude = ""
+    #exclude = ""
+    exclude = []
     pipeline_config = read_config(config)
     print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:
     	print("exc:", exc)
+    	exclude.add(exc)
     	#exclude += ";" + exc
-        exclude += exc + ","      
+        #exclude += exc + ","      
     #words = exclude.split(";") 
     #num=$(echo $var | tr -cd ';' | wc -c)
     print("exclude:", exclude)
@@ -64,7 +66,7 @@ def get_job_exclusions(config, exclusions, ids_job_name):
        
      #  enable_alerts+=$alert_type
 #done
-    #return exclude
+    return exclude
            
 
 def main():
