@@ -35,7 +35,8 @@ num=$(echo $var | tr -cd ';' | wc -c)
 echo "num: $num"
 # Loop throughr line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
-       alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
+       #alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
+       alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
        
        enable_alerts+=$alert_type
 done

@@ -51,7 +51,7 @@ def get_job_exclusions(config, exclusions, ids_job_name):
     #exclude = ""
     exclude = []
     pipeline_config = read_config(config)
-    print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
+    #print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:
     	print("exc:", exc)
     	exclude.append(exc)
