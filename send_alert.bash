@@ -32,7 +32,7 @@ echo "var: $var"
 # Retrieve line from exclusion list for current job
 
 #num=$(echo $var | tr -cd ';' | wc -c)
-num=$(echo $var | tr -cd ',' | wc -c)
+num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
 # Loop throughr line and add exclusion to array
 for ((i=2;i<=$num+1;i++)); do
