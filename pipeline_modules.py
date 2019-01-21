@@ -62,7 +62,7 @@ def get_job_exclusions(config, exclusions, ids_job_name):
      #  alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
        
      #  enable_alerts+=$alert_type
-done
+#done
     #return exclude
            
 
