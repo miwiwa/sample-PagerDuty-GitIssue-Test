@@ -39,7 +39,8 @@ def retrieve_config_value(config_file, param):
     k, v = stack.pop() 
     if isinstance(v, dict):
       if param in [x for z in v for x in z if type(z)==list] or param in v:
-        sys.stdout.write(v[param])
+        return v[param].strip("\n")
+     #   sys.stdout.write(v[param])
       if k not in visited: 
         stack.extend(v.items()) 
       else: 
