@@ -191,7 +191,7 @@ def trigger_slackMessage():
    
     print("calling function to retrieve web hook")
     #web_hook_url = 'https://hooks.slack.com/services/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'
-    web_hook_url = subprocess.check_output(["python", "grab_exclusions.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
+    web_hook_url = subprocess.check_output(["python", "pipeline_modules.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
     print("webhookurl:", web_hook_url)
     response = requests.post(web_hook_url, headers=headers, data=data)
    
