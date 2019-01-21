@@ -57,7 +57,7 @@ def main():
    # myprint(pipeline_config)
     if z:
     #    print("Main found alert exclusions")
-        alerts = get_job_exclusions(exclusions, ids_job_name)
+        alerts = get_job_exclusions(config, exclusions, ids_job_name)
         print("alerts:", alerts)
  #       return alerts
     elif param_value:
