@@ -69,7 +69,7 @@ def main():
  #       return alerts
     elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
-        print(read_config(pipeline_config))
+        print(read_config(config)
     #   print(config_value)
     else:
         print("parameter not passed correctly")
