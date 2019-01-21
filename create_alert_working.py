@@ -14,7 +14,6 @@ import re
 import sys
 import yaml
 import datetime
-import pipeline_modules
 
 
 # Read in argument(s)
