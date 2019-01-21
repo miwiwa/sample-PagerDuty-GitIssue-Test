@@ -16,22 +16,18 @@ config = args.CONFIG
 param_value = args.VALUE
 exclusions = args.EXCLUSIONS
 z = args.ZZZZZ
-#print("z:",z)
 
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
-print("ids_job_name", ids_job_name)
-print("exclusions:", exclusions)
-print("config:", config)
 
 # read in config file
-def read_config(config_file):
+def read_config(config):
   with open(config, 'r') as f:
     try:
       pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
-      print(exc)
+      print("exc:", exc)
   return pipeline_config
 
 def retrieve_config_value(config_file, param): 
@@ -53,6 +49,7 @@ def retrieve_config_value(config_file, param):
 def get_job_exclusions(config, exclusions, ids_job_name):    
     exclude = ""
     pipeline_config = read_config(config)
+    print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:      
         exclude += ";" + exc     
     return exclude
@@ -62,15 +59,12 @@ def main():
    # myprint(pipeline_config)
     if z:
     #    print("Main found alert exclusions")
-    	print("config:", config)
-    	print("exclusions:", exclusions)
-    	print("ids_job_name:", ids_job_name)
         alerts = get_job_exclusions(config, exclusions, ids_job_name)
         print("alerts:", alerts)
  #       return alerts
     elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
-        print(read_config(config))
+        print(retrieve_config_value(config, param_value))
     #   print(config_value)
     else:
         print("parameter not passed correctly")
