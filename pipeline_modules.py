@@ -46,9 +46,9 @@ def retrieve_config_value(config_value, param):
         print("%s: %s" % (k, v)) 
       visited.add(k)
  
-def get_job_exclusions(exclusions, ids_job_name):    
+def get_job_exclusions(config, exclusions, ids_job_name):    
     exclude = ""
-    for exc in pipeline_config[exclusions][ids_job_name]:      
+    for exc in config[exclusions][ids_job_name]:      
         exclude += ";" + exc     
     return exclude
            
