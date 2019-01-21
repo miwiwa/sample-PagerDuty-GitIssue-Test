@@ -54,7 +54,7 @@ def get_job_exclusions(config, exclusions, ids_job_name):
     print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:
     	print("exc:", exc)
-    	exclude.add(exc)
+    	exclude.append(exc)
     	#exclude += ";" + exc
         #exclude += exc + ","      
     #words = exclude.split(";") 
