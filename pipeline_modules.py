@@ -21,7 +21,9 @@ z = args.ZZZZZ
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
-#print("ids_job_name", ids_job_name)
+print("ids_job_name", ids_job_name)
+print("exclusions:", exclusions)
+print("config:", config)
 
 # read in config file
 def read_config(config_file):
