@@ -34,15 +34,16 @@ def read_config(config_file):
       print(exc)
   return pipeline_config
 
-def retrieve_config_value(config_value, param): 
-  stack = list(config_value.items())
+def retrieve_config_value(config_file, param): 
+  pipeline_config = read_config(config_file)
+  stack = list(pipeline_config.items())
  # print("stack:", stack)
   visited = set() 
   while stack: 
     k, v = stack.pop() 
     if isinstance(v, dict):
-      if param_value in [x for z in v for x in z if type(z)==list] or param_value in v:
-        print(v[param_value])
+      if param in [x for z in v for x in z if type(z)==list] or param in v:
+        print(v[param])
       if k not in visited: 
         stack.extend(v.items()) 
       else: 
