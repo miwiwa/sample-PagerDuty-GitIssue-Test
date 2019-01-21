@@ -53,19 +53,9 @@ def get_job_exclusions(config, exclusions, ids_job_name):
     pipeline_config = read_config(config)
     #print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:
-    	print("exc:", exc)
     	exclude.append(exc)
-    	#exclude += ";" + exc
-        #exclude += exc + ","      
-    #words = exclude.split(";") 
-    #num=$(echo $var | tr -cd ';' | wc -c)
-    print("exclude:", exclude)
-    # Loop throughr line and add exclusion to array
-    #for ((i=2;i<=$num+1;i++)); do
-     #  alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
-       
-     #  enable_alerts+=$alert_type
-#done
+    	
+    #print("exclude:", exclude)
     return exclude
            
 
@@ -74,7 +64,7 @@ def main():
     if z:
     #    print("Main found alert exclusions")
         alerts = get_job_exclusions(config, exclusions, ids_job_name)
-        print("alerts:", alerts)
+        #print("alerts:", alerts)
  #       return alerts
     elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
