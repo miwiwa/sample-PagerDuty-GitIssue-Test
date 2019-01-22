@@ -34,9 +34,12 @@ echo "var: $var"
 #num=$(echo $var | tr -cd ';' | wc -c)
 num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
-# Loop throughr line and add exclusion to array
+# Loop through line and add exclusion to array
 for ((i=1;i>$num;i++)); do
+	   echo "Inside loop"
        #alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
+       alertvar=$(echo "\"$var"\)
+       echo "alertvar: $alervar"
        alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
        echo "alert_type: $alert_type"
        enable_alerts+=$alert_type
