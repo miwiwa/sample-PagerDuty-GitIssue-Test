@@ -48,7 +48,7 @@ def retrieve_config_value(config_file, param):
       visited.add(k)
  
 def get_job_exclusions(config, exclusions, ids_job_name):    
-    #exclude = ""
+   
     exclude = []
     pipeline_config = read_config(config)
     #print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
@@ -68,7 +68,8 @@ def main():
         return alerts
     elif param_value:
         #config_value = get_config_value(pipeline_config, param_value)
-        print(retrieve_config_value(config, param_value))
+        config_value = retrieve_config_value(config, param_value)
+        print(config_value)
     #   print(config_value)
     else:
         print("parameter not passed correctly")
