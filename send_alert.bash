@@ -32,14 +32,10 @@ echo "var: $var"
 num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
 # Loop through line and add exclusion to array
-for i in $(seq 1 $num); do
-       echo "i: $i"
-	   alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
-       echo "alert_type: $alert_type"
+for i in $(seq 1 $num); do 
+	   alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")   
        enable_alerts+=$alert_type
 done
-
-echo ${enable_alerts[*]}
 
 # Call python script to send alerts based on content of array
 if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]] ; then
