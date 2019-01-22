@@ -22,7 +22,7 @@ alert_exclusions="ALERT_EXCLUSIONS"
 
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-get_exclusions=$(python pipeline.py -c $filename -d $alert_exclusions -z)
+get_exclusions=$(python pipeline.py -c $filename -d $alert_exclusions -e)
 
 # Retrieve line from exclusion list for current job
 total_exclusions=$(echo $get_exclusions | tr ',' ' ' | wc -w)

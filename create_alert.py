@@ -24,9 +24,9 @@ parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', 
 parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 #additional params not needed by this script but by other
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
-parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
+#parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
-parser.add_argument('-z', '--zzzzz', dest='ZZZZZ', action='store_true')
+parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 
 args = parser.parse_args()
 alerts = args.ALERTS
