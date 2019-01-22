@@ -24,7 +24,7 @@ filename="pipeline.config"
 
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-var=$(python pipeline_modules.py -c $filename -z)
+var=$(python pipeline.py -c $filename -z)
 
 
 
