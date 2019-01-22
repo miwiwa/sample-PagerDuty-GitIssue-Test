@@ -194,8 +194,8 @@ def trigger_slackMessage():
     data = json.dumps(d)
    
     print("calling function to retrieve web hook")
-    #web_hook_url = pipeline_modules.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-    web_hook_url = subprocess.check_output(["python", "pipeline.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
+    web_hook_url = pipeline_modules.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
+    #web_hook_url = subprocess.check_output(["python", "pipeline.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
     print("webhookurl:", web_hook_url)
     response = requests.post(web_hook_url, headers=headers, data=data)
    
