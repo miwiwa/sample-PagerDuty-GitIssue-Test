@@ -25,13 +25,10 @@ filename="pipeline.config"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
 var=$(python pipeline_modules.py -c $filename -z)
-#var=$(python grab_exclusions.py -c $filename -z)
 
 echo "var: $var"
 
 # Retrieve line from exclusion list for current job
-
-#num=$(echo $var | tr -cd ';' | wc -c)
 num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
 # Loop through line and add exclusion to array
@@ -43,7 +40,6 @@ for i in $(seq 1 $num); do
 done
 
 echo ${enable_alerts[*]}
-
 
 # Call python script to send alerts based on content of array
 if [[ " ${enable_alerts[@]} " =~ "no-pagerduty" ]] && [[ " ${enable_alerts[@]} " =~ "no-git" ]] && [[ " ${enable_alerts[@]} " =~ "no-slack" ]] ; then

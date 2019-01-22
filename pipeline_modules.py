@@ -33,14 +33,12 @@ def read_config(config):
 def retrieve_config_value(config_file, param): 
   pipeline_config = read_config(config_file)
   stack = list(pipeline_config.items())
- # print("stack:", stack)
   visited = set() 
   while stack: 
     k, v = stack.pop() 
     if isinstance(v, dict):
-      if param in [x for z in v for x in z if type(z)==list] or param in v:
-        return v[param].strip("\n")
-     #   sys.stdout.write(v[param])
+      if param in [x for z in v for x in z if type(z)==list] or param in v:        
+        return v[param]
       if k not in visited: 
         stack.extend(v.items()) 
       else: 
@@ -51,29 +49,21 @@ def get_job_exclusions(config, exclusions, ids_job_name):
    
     exclude = []
     pipeline_config = read_config(config)
-    #print("pipeline_config[exclusions][ids_job_name]", pipeline_config[exclusions][ids_job_name])
     for exc in pipeline_config[exclusions][ids_job_name]:
     	exclude.append(exc)
-    	
-    #print("exclude:", exclude)
     return exclude
            
 
 def main():
-   # myprint(pipeline_config)
     if z:
-    #    print("Main found alert exclusions")
         alerts = get_job_exclusions(config, exclusions, ids_job_name)
         print(alerts)
         return alerts
     elif param_value:
-        #config_value = get_config_value(pipeline_config, param_value)
         config_value = retrieve_config_value(config, param_value)
-        print(config_value)
-    #   print(config_value)
+        print(config_value),
     else:
         print("parameter not passed correctly")
-    #print("alerts2:", alerts)
-    #return alerts
+
 if __name__ == '__main__':
     main()

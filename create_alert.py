@@ -14,7 +14,7 @@ import re
 import sys
 import yaml
 import datetime
-#import pipeline_modules
+import pipeline_modules
 
 
 # Read in argument(s)
@@ -173,7 +173,6 @@ def trigger_slackMessage():
     
     if job_status == 'started':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
-        #d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
     elif job_status == 'success':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
@@ -182,16 +181,15 @@ def trigger_slackMessage():
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
     elif job_status == 'executed':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
-        #d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
-
+        
     else:
         print("Slack message not sent due to unknown status")
     
     data = json.dumps(d)
    
     print("calling function to retrieve web hook")
-    #web_hook_url = 'https://hooks.slack.com/services/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'
-    web_hook_url = subprocess.check_output(["python", "pipeline_modules.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
+    web_hook_url = pipeline_modules.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
+    #web_hook_url = subprocess.check_output(["python", "pipeline_modules.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
     print("webhookurl:", web_hook_url)
     response = requests.post(web_hook_url, headers=headers, data=data)
    
