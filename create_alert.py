@@ -14,8 +14,8 @@ import re
 import sys
 import yaml
 import datetime
-from pipeline import retrieve_config_value
-
+#from pipeline import retrieve_config_value
+import pipeline
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
