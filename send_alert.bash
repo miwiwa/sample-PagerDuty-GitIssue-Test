@@ -5,8 +5,6 @@
 
 enable_alerts=()
 
-
-
 sudo apt-get update
 sudo apt-get install python python-yaml
 
@@ -18,22 +16,20 @@ else
 fi
 
 
-
 # exclude file contains list of alerts not to send
 filename="pipeline.config"
+alert_exclusions="ALERT_EXCLUSIONS"
 
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
-var=$(python pipeline.py -c $filename -z)
-
-
+get_exclusions=$(python pipeline.py -c $filename -d $alert_exclusions -z)
 
 # Retrieve line from exclusion list for current job
-num=$(echo $var | tr ',' ' ' | wc -w)
+total_exclusions=$(echo $get_exclusions | tr ',' ' ' | wc -w)
 
-# Loop through line and add exclusion to array
-for i in $(seq 1 $num); do 
-	   alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")   
+# Loop through line and add exclusions to array
+for i in $(seq 1 $total_exclusions); do 
+	   alert_type=$(echo "\"$get_exclusions"\ | cut -d "," -f $i"")   
        enable_alerts+=$alert_type
 done
 

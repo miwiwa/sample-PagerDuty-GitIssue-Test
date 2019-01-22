@@ -8,9 +8,9 @@ description = 'Retrieve list of exclusions for specific job'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
-parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
+#parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
-parser.add_argument('-z', '--zzzzz', dest='ZZZZZ', action='store_true')
+parser.add_argument('-z', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 # Additional arguments from create_alert
 parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
 parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
@@ -18,9 +18,8 @@ parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', 
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
-exclusions = args.EXCLUSIONS
-z = args.ZZZZZ
-
+#exclusions = args.EXCLUSIONS
+alert_check = args.EXCLUSION_FLAG
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -41,7 +40,7 @@ def retrieve_config_value(config_file, param):
   while stack: 
     k, v = stack.pop() 
     if isinstance(v, dict):
-      if param in [x for z in v for x in z if type(z)==list] or param in v:        
+      if param in [x for alert_check in v for x in alert_check if type(alert_check)==list] or param in v:        
         return v[param]
       if k not in visited: 
         stack.extend(v.items()) 
@@ -49,18 +48,17 @@ def retrieve_config_value(config_file, param):
         print("%s: %s" % (k, v)) 
       visited.add(k)
  
-def get_job_exclusions(config, exclusions, ids_job_name):    
-   
+def get_job_exclusions(config, exclusions, ids_job_name):      
     exclude = []
     pipeline_config = read_config(config)
-    for exc in pipeline_config[exclusions][ids_job_name]:
+    for exc in pipeline_config[param_value][ids_job_name]:
     	exclude.append(exc)
     return exclude
            
 
 def main():
-    if z:
-        alerts = get_job_exclusions(config, exclusions, ids_job_name)
+    if alert_check:
+        alerts = get_job_exclusions(config, param_value, ids_job_name)
         print(alerts)
         return alerts
     elif param_value:

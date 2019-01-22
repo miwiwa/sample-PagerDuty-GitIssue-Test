@@ -14,7 +14,6 @@ import re
 import sys
 import yaml
 import datetime
-#from pipeline import retrieve_config_value
 import pipeline
 
 # Read in argument(s)
@@ -196,7 +195,7 @@ def trigger_slackMessage():
     print("calling function to retrieve web hook")
     web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
     #web_hook_url = subprocess.check_output(["python", "pipeline.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
-    print("webhookurl:", web_hook_url)
+   
     response = requests.post(web_hook_url, headers=headers, data=data)
    
     if response.status_code != 200:
