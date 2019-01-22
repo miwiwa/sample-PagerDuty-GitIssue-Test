@@ -14,7 +14,7 @@ import re
 import sys
 import yaml
 import datetime
-#import pipeline_modules
+from pipeline import retrieve_config_value
 
 
 # Read in argument(s)
