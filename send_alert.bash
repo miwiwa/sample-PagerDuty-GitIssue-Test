@@ -35,10 +35,10 @@ echo "var: $var"
 num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
 # Loop throughr line and add exclusion to array
-for ((i=1;i==$num+1;i++)); do
+for ((i=1;i>$num;i++)); do
        #alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
        alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
-       
+       echo "alert_type: $alert_type"
        enable_alerts+=$alert_type
 done
 
