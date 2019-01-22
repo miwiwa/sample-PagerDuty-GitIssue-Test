@@ -37,7 +37,7 @@ echo "num: $num"
 # Loop through line and add exclusion to array
 for ((i=1;i>$num;i++)); do
 	   echo "Inside loop"
-       #alert_type=$(echo "\"$var"\ | cut -d ";" -f $i"")
+       echo "\"$var"\ | cut -d ";" -f $i""
        alertvar=$(echo "\"$var"\)
        echo "alertvar: $alervar"
        alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
