@@ -17,7 +17,7 @@ else
   slack_status=="executed"
 fi
 
-echo "slack_status:, $slack_status"
+
 
 # exclude file contains list of alerts not to send
 filename="pipeline.config"
@@ -26,11 +26,11 @@ curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-
 
 var=$(python pipeline_modules.py -c $filename -z)
 
-echo "var: $var"
+
 
 # Retrieve line from exclusion list for current job
 num=$(echo $var | tr ',' ' ' | wc -w)
-echo "num: $num"
+
 # Loop through line and add exclusion to array
 for i in $(seq 1 $num); do 
 	   alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")   
