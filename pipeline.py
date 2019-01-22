@@ -11,6 +11,10 @@ parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', 
 parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
 parser.add_argument('-z', '--zzzzz', dest='ZZZZZ', action='store_true')
+# Additional arguments from create_alert
+parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
+parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
+
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
