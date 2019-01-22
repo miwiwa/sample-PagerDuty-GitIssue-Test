@@ -35,7 +35,7 @@ echo "var: $var"
 num=$(echo $var | tr ',' ' ' | wc -w)
 echo "num: $num"
 # Loop through line and add exclusion to array
-for i in {1..$num}; do
+for i in $(seq 1 $num); do
        echo "i: $i"
 	   alert_type=$(echo "\"$var"\ | cut -d "," -f $i"")
        echo "alert_type: $alert_type"
