@@ -102,10 +102,10 @@ def trigger_incident():
                 "details":  pipeline_full_url
             }
           }
-        }
+    }
 	
 	# Send request to PagerDuty
-	print("Creating PagerDuty incident....")
+    print("Creating PagerDuty incident....")
     r = requests.post(url, headers=headers, data=json.dumps(payload))
     
     code=r.status_code
