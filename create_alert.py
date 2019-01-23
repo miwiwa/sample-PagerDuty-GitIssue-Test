@@ -61,7 +61,9 @@ print("Json load data:", data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
+print("instance_id:", instance_id)
 ids_instance_id = instance_id[0]
+print("ids_instance_id:", ids_instance_id)
 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
 pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id +  "/" + ids_job_id + "?env_id=" + ids_region_id
