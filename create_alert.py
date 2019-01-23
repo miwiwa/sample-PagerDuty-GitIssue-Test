@@ -55,7 +55,7 @@ current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
-    data = json.load(f)
+    global data = json.load(f)
 
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
