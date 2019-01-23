@@ -169,7 +169,7 @@ def trigger_slackMessage():
         'Content-type': 'application/json',
     }
     d = {}
-    
+    print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
     try:
         slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']]
