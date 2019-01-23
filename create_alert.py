@@ -183,7 +183,7 @@ def trigger_slackMessage():
         slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' not in i['broker_id']]
         slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' not in i['broker_id']]
         print([i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
-        print(slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
+        print([i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
        # sl_api_token = slack_api_token[0]
        # sl_service_id = slack_service_id[0]
        # print("sl_api_token:", sl_api_token)
