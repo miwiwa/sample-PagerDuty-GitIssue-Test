@@ -176,22 +176,22 @@ def trigger_slackMessage():
     
     d = {}
     global data
-    print("data:",data)
+    #print("data:",data)
     
     print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
-    try:
-        slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' not in i['broker_id']]
-        slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' not in i['broker_id']]
-        print("slack_service_id:",[i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
-        print("slack_api_token:",[i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
-        sl_api_token = slack_api_token[0]
-        sl_service_id = slack_service_id[0]
-        print("sl_api_token:", sl_api_token)
-        print("sl_service_id:", sl_service_id)
-    except (KeyError, IndexError):
-        print("ERROR: Slack is not configured with the toolchain")
-        return 1
+    #try:
+    slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' not in i['broker_id']]
+    slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' not in i['broker_id']]
+    print("slack_service_id:",[i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
+    print("slack_api_token:",[i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
+    sl_api_token = slack_api_token[0]
+    sl_service_id = slack_service_id[0]
+    print("sl_api_token:", sl_api_token)
+    print("sl_service_id:", sl_service_id)
+    #except (KeyError, IndexError):
+    #    print("ERROR: Slack is not configured with the toolchain")
+    #    return 1
         
     if job_status == 'started':
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
