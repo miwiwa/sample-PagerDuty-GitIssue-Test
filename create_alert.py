@@ -17,7 +17,7 @@ import datetime
 import pipeline
 
 # Read in argument(s)
-description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
+description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
@@ -57,7 +57,6 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
-print("data:", data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
@@ -80,8 +79,7 @@ def trigger_incident():
         user_email = pd_user_email[0]
     except (KeyError, IndexError):
         print("Warning: Pager Duty is not configured with the toolchain")
-        
-     
+          
 	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
     headers = {
@@ -107,7 +105,7 @@ def trigger_incident():
         }
 	
 	# Send request to PagerDuty
-    print("Creating PagerDuty incident")
+	print("Creating PagerDuty incident....")
     r = requests.post(url, headers=headers, data=json.dumps(payload))
     
     code=r.status_code
@@ -171,20 +169,21 @@ def trigger_issue():
         print ('Successfully created Git issue: {0:s}'.format(issue_title))
 
 def trigger_slackMessage():
+# Function creates Slack message and sends through Slack API
     headers = {
         'Content-type': 'application/json',
     }
-    d = {}
     
+    d = {}
     global data
     
     print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
     try:
-      #  print(slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
-        print([i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
+        slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'slack' not in i['broker_id']])
+        slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' not in i['broker_id']])
         print([i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
-      #  print(slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
+        print(slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'slack' in i['broker_id']])
        # sl_api_token = slack_api_token[0]
        # sl_service_id = slack_service_id[0]
        # print("sl_api_token:", sl_api_token)
@@ -202,14 +201,13 @@ def trigger_slackMessage():
         d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
         d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
     elif job_status == 'executed':
-        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
-        
+        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status        
     else:
         print("Slack message not sent due to unknown status")
     
     data = json.dumps(d)
    
-    print("calling function to retrieve web hook")
+    #Calling function to retrieve web hook")
     web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
     #web_hook_url = subprocess.check_output(["python", "pipeline.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
    

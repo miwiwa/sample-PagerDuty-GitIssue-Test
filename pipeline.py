@@ -4,7 +4,7 @@ import yaml
 import sys
 
 # Read in argument(s)
-description = 'Retrieve list of exclusions for specific job'
+description = 'Helper functions for Pipeline Config file'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
@@ -18,13 +18,12 @@ parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', 
 args = parser.parse_args()
 config = args.CONFIG
 param_value = args.VALUE
-#exclusions = args.EXCLUSIONS
 alert_check = args.EXCLUSION_FLAG
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 
-# read in config file
+# Reads in config file to dict
 def read_config(config):
   with open(config, 'r') as f:
     try:
@@ -33,6 +32,7 @@ def read_config(config):
       print("exc:", exc)
   return pipeline_config
 
+# Return key value from pipeline.config
 def retrieve_config_value(config_file, param): 
   pipeline_config = read_config(config_file)
   stack = list(pipeline_config.items())
@@ -47,7 +47,7 @@ def retrieve_config_value(config_file, param):
       else: 
         print("%s: %s" % (k, v)) 
       visited.add(k)
- 
+ # Return exclusions listed in pipeline.config as list
 def get_job_exclusions(config, exclusions, ids_job_name):      
     exclude = []
     pipeline_config = read_config(config)
