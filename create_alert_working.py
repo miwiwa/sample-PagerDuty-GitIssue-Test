@@ -45,7 +45,7 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
-# Load toolchain json to dict for parsing
+# jLoad toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
