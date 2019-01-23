@@ -18,8 +18,6 @@ import pipeline
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
-
-global data
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
@@ -177,6 +175,8 @@ def trigger_slackMessage():
         'Content-type': 'application/json',
     }
     d = {}
+    
+    global data
     
     print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
