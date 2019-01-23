@@ -55,7 +55,7 @@ current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
-    global data = json.load(f)
+    data = json.load(f)
 
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
@@ -79,8 +79,8 @@ def trigger_incident():
         service_id = pd_service_id[0]
         user_email = pd_user_email[0]
     except (KeyError, IndexError):
-        print("ERROR: Pager Duty is not configured with the toolchain")
-        return 1
+        print("Warning: Pager Duty is not configured with the toolchain")
+        
      
 	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
@@ -141,8 +141,7 @@ def trigger_issue():
         git_repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]
         git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
       except (KeyError, IndexError):
-        print("ERROR: Git Issues is not configured correctly with the toolchain")
-        return 1
+        print("Warning: Git Issues is not configured correctly with the toolchain")
     
     # If label value isn't passed in by user default to 'bug'
     if git_issue_label is None:
@@ -171,7 +170,7 @@ def trigger_issue():
     else:
         print ('Successfully created Git issue: {0:s}'.format(issue_title))
 
-def trigger_slackMessage():
+def trigger_slackMessage(data):
     headers = {
         'Content-type': 'application/json',
     }
