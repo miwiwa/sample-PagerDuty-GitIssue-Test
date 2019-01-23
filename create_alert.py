@@ -176,6 +176,7 @@ def trigger_slackMessage():
     
     d = {}
     global data
+    print("data:",data)
     
     print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
