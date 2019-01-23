@@ -18,6 +18,8 @@ import pipeline
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
+
+global data
    
 parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
@@ -170,7 +172,7 @@ def trigger_issue():
     else:
         print ('Successfully created Git issue: {0:s}'.format(issue_title))
 
-def trigger_slackMessage(data):
+def trigger_slackMessage():
     headers = {
         'Content-type': 'application/json',
     }
