@@ -125,6 +125,8 @@ def trigger_issue():
     git_repo_owner = environ.get('git_repo_owner')
     git_repo_name = environ.get('git_repo_name')
     git_issue_label = environ.get('git_issue_label')
+    print("git_repo_owner_env:",git_repo_owner)
+    print("git_repo_name_env:",git_repo_name)
     
     api_base_url = "https://api.github.ibm.com/"
     
@@ -136,11 +138,15 @@ def trigger_issue():
       print("Creating Git issue....")
       git_repo_name = re.search(r'(.*)/(.*)', git_url).group(2).split('.')[0]
       git_repo_owner = re.search(r'(.*)/(.*)', git_url).group(1).split('/')[3]
+      print("git_repo_owner_git_url:",git_repo_owner)
+      print("git_repo_name_git_url:",git_repo_name)
     else:
       try:
         print("Creating Git issue....")
         git_repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]
         git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
+        print("git_repo_owner_try:",git_repo_owner)
+        print("git_repo_name_try:",git_repo_name)
       except (KeyError, IndexError):
         print("Warning: Git Issues is not configured correctly with the toolchain")
     
