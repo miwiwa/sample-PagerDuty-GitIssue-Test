@@ -59,6 +59,7 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
+print("data:", data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
