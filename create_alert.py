@@ -167,7 +167,7 @@ def trigger_issue():
              'labels': [git_issue_label]}
     
     # Specifies URL for github api
-    url = api_base_url + "repos/" + git_repo_owner + "/" + git_repo_name + "/issues"
+    url = api_base_url + "repos/" + str(git_repo_owner) + "/" + str(git_repo_name) + "/issues"
     
     # Send request to github.ibm.com
     r = requests.post(url, headers=headers, data=json.dumps(issue))
