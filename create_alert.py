@@ -14,7 +14,8 @@ import re
 import sys
 import yaml
 import datetime
-#import pipeline
+import pprint
+import pipeline
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
@@ -61,9 +62,8 @@ with open(toolchain_json) as f:
 print("type:",type(data))
 print("data:", isinstance(data, dict))
 
-for i in data.keys():
-    print i, data[i]
-#print("Json load data:", data)
+
+pprint.pprint(data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
