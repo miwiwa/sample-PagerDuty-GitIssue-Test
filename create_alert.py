@@ -14,7 +14,7 @@ import re
 import sys
 import yaml
 import datetime
-import pipeline
+#import pipeline
 
 # Read in argument(s)
 description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
@@ -186,7 +186,7 @@ def trigger_slackMessage():
     }
     
     d = {}
-    global data
+    #global data
     #print("data:",data)
     
     print("Checking Slack parameters in toolchain.json")
