@@ -45,6 +45,7 @@ pipeline_id = environ.get('PIPELINE_ID')
 pipeline_stage_id = environ.get('PIPELINE_STAGE_ID')
 workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
+print("github_token:", github_token)
 trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 
 # Generate current Timestamp
