@@ -56,11 +56,13 @@ current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
-    data = json.load(json.load(f)
+    data = json.load(json.load(f))
 
 print("data:", isinstance(data, dict))
 
-print("Json load data:", data)
+for i in data.keys():
+    print i, data[i]
+#print("Json load data:", data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
