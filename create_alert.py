@@ -172,7 +172,7 @@ def trigger_issue():
     
     # Send request to github.ibm.com
     r = requests.post(url, headers=headers, data=json.dumps(issue))
-  	print("r", r)
+    print("r", r)
     if r.status_code != 201:
         raise SystemError("'ERROR: Could not create Git Issue {0:s}'.format(title) due to", r.status_code)
     else:
