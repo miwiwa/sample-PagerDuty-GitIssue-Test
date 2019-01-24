@@ -188,7 +188,7 @@ def trigger_slackMessage():
     }
     
     d = {}
-    #global data
+    global data
     #print("data:",data)
     
     print("Checking Slack parameters in toolchain.json")
