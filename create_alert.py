@@ -150,10 +150,11 @@ def trigger_issue():
       try:
         print("Creating Git issue....")
         git_repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]
-        print("join:", ' '.join(map(str, git_repo_owner)))
+        git_repo_owner =  ' '.join(map(str, git_repo_owner)))       
         git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
-        print("git_repo_owner_try:", git_repo_owner[0].decode('utf8'))
-        print("git_repo_name_try:", git_repo_name[0].decode('utf8'))
+        git_repo_name =  ' '.join(map(str, git_repo_name)))
+        print("git_repo_owner_try:", git_repo_owner)
+        print("git_repo_name_try:", git_repo_name)
       except (KeyError, IndexError):
         print("Warning: Git Issues is not configured correctly with the toolchain")
     
