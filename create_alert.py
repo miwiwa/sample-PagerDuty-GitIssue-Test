@@ -25,7 +25,6 @@ parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', 
 parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 #additional params not needed by this script but by other
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
-#parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
 parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 
@@ -58,10 +57,6 @@ toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
     data = json.load(f)
-
-print("type:",type(data))
-print("data:", isinstance(data, dict))
-
 
 pprint.pprint(data)
 # Formulate instance id and piplelines full url
@@ -150,9 +145,9 @@ def trigger_issue():
       try:
         print("Creating Git issue....")
         git_repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]
-        git_repo_owner =  ' '.join(map(str, git_repo_owner))      
+       # git_repo_owner =  ' '.join(map(str, git_repo_owner))      
         git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
-        git_repo_name =  ' '.join(map(str, git_repo_name))
+       # git_repo_name =  ' '.join(map(str, git_repo_name))
         print("git_repo_owner_try:", git_repo_owner)
         print("git_repo_name_try:", git_repo_name)
       except (KeyError, IndexError):
@@ -180,7 +175,6 @@ def trigger_issue():
     
     # Send request to github.ibm.com
     r = requests.post(url, headers=headers, data=json.dumps(issue))
-    print("r", r)
     if r.status_code != 201:
         raise SystemError("'ERROR: Could not create Git Issue {0:s}'.format(title) due to", r.status_code)
     else:
