@@ -150,9 +150,9 @@ def trigger_issue():
       try:
         print("Creating Git issue....")
         git_repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]
-        git_repo_owner =  ' '.join(map(str, git_repo_owner)))       
+        git_repo_owner =  ' '.join(map(str, git_repo_owner))      
         git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
-        git_repo_name =  ' '.join(map(str, git_repo_name)))
+        git_repo_name =  ' '.join(map(str, git_repo_name))
         print("git_repo_owner_try:", git_repo_owner)
         print("git_repo_name_try:", git_repo_name)
       except (KeyError, IndexError):
