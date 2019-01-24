@@ -23,6 +23,9 @@ alert_check = args.EXCLUSION_FLAG
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 
+url = "https://www.espn.com"
+print("url:", type(url))
+
 # Reads in config file to dict
 def read_config(config):
   with open(config, 'r') as f:
