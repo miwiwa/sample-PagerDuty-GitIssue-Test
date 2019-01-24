@@ -58,6 +58,8 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
+print("data:", isinstance(data, dict))
+
 print("Json load data:", data)
 # Formulate instance id and piplelines full url
 ids_region_id = data['region_id']
