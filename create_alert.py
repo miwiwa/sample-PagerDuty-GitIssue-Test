@@ -168,10 +168,11 @@ def trigger_issue():
     
     # Specifies URL for github api
     url = api_base_url + "repos/" + str(git_repo_owner) + "/" + str(git_repo_name) + "/issues"
+    print("github_api_url:", url)
     
     # Send request to github.ibm.com
     r = requests.post(url, headers=headers, data=json.dumps(issue))
-  	
+  	print("r", r)
     if r.status_code != 201:
         raise SystemError("'ERROR: Could not create Git Issue {0:s}'.format(title) due to", r.status_code)
     else:
