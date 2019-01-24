@@ -129,7 +129,7 @@ def trigger_issue():
     print("git_repo_owner_env:",git_repo_owner)
     print("git_repo_name_env:",git_repo_name)
     
-    api_base_url = "https://api.github.ibm.com/"
+    api_base_url = "https://api.github.com/"
     
     # Check to see if env vars populated for repo owner and name. If not, parse git_url if git was input to job.  Otherwise
     # parse the _toolchain.json file for values. If they don't exist there then Git issues must not be integrated.
