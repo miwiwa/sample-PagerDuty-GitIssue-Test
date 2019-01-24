@@ -45,7 +45,6 @@ pipeline_id = environ.get('PIPELINE_ID')
 pipeline_stage_id = environ.get('PIPELINE_STAGE_ID')
 workspace = environ.get('WORKSPACE')
 github_token = environ.get('gitApiKey')
-print("github_token:", github_token)
 trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 
 # Generate current Timestamp
@@ -60,8 +59,8 @@ with open(toolchain_json) as f:
 
 pprint.pprint(data)
 # Formulate instance id and piplelines full url
-ids_region_id = data['region_id']
-instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
+ids_region_id = ' '.join(map(str, data['region_id']))
+instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]))
 print("instance_id:", instance_id)
 ids_instance_id = instance_id[0]
 print("ids_instance_id:", ids_instance_id)
@@ -139,8 +138,6 @@ def trigger_issue():
       print("Creating Git issue....")
       git_repo_name = re.search(r'(.*)/(.*)', git_url).group(2).split('.')[0]
       git_repo_owner = re.search(r'(.*)/(.*)', git_url).group(1).split('/')[3]
-      print("git_repo_owner_git_url:",git_repo_owner)
-      print("git_repo_name_git_url:",git_repo_name)
     else:
       try:
         print("Creating Git issue....")
