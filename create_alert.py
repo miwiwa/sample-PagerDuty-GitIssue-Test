@@ -209,8 +209,8 @@ def trigger_slackMessage():
               'Request to slack returned an error %s, the response is:\n%s'
               % (response.status_code, response.text)
       )
-     else:
-       print("Warning: Slack integration already part of toolchain")
+    else:
+      print("Warning: Slack integration already part of toolchain")
 
 if __name__ == '__main__':	
 
