@@ -183,43 +183,34 @@ def trigger_slackMessage():
     #try:
     if not [i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']]:
       print("slack not in toolchain.json")
-    slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'git' in i['broker_id']]
-    print("slack_service_id:",[i['parameters']['service_id'] for i in data["services"] if 'git' in i['broker_id']])
-    print("slack_api_token:",[i['parameters']['api_token'] for i in data["services"] if 'git' in i['broker_id']])
-    sl_api_token = slack_api_token[0]
-    sl_service_id = slack_service_id[0]
-    print("sl_api_token:", sl_api_token)
-    print("sl_service_id:", sl_service_id)
-    #except (KeyError, IndexError):
-    #    print("ERROR: Slack is not configured with the toolchain")
-    #    return 1
-        
-    if job_status == 'started':
-        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
-    elif job_status == 'success':
-        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
-        d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
-    elif job_status == 'fail':
-        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
-        d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
-    elif job_status == 'executed':
-        d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status        
-    else:
-        print("Slack message not sent due to unknown status")
     
-    data = json.dumps(d)
+      if job_status == 'started':
+          d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status + "\n Triggered by: " + trigger_user + "\n Started at: " + current_time
+      elif job_status == 'success':
+          d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
+          d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#2eb886" }]
+      elif job_status == 'fail':
+          d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status
+          d['attachments'] = [ { "title": ids_job_name + ":" + ids_stage_num + " " + job_status, "title_link": pipeline_full_url, "color": "#FF0000" }]
+      elif job_status == 'executed':
+          d['text'] = "Job *" + ids_job_name + "* in Stage *" + ids_stage_name + "* : *" + ids_stage_num + "* " + job_status        
+      else:
+          print("Slack message not sent due to unknown status")
+    
+      data = json.dumps(d)
    
-    #Calling function to retrieve web hook")
-    web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-    #web_hook_url = subprocess.check_output(["python", "pipeline.py", "-c", 'pipeline.config', "-d", 'SLACK_WEBHOOK_URL'])
+      #Calling function to retrieve web hook
+      web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
+     
+      response = requests.post(web_hook_url, headers=headers, data=data)
    
-    response = requests.post(web_hook_url, headers=headers, data=data)
-   
-    if response.status_code != 200:
-        raise ValueError(
-            'Request to slack returned an error %s, the response is:\n%s'
-            % (response.status_code, response.text)
-    )
+      if response.status_code != 200:
+          raise ValueError(
+              'Request to slack returned an error %s, the response is:\n%s'
+              % (response.status_code, response.text)
+      )
+     else:
+       print("Warning: Slack integration already part of toolchain")
 
 if __name__ == '__main__':	
 
