@@ -181,7 +181,8 @@ def trigger_slackMessage():
     print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
     #try:
-    slack_service_id = [i['parameters']['service_id'] for i in data["services"] if 'git' in i['broker_id']]
+    if not [i['parameters']['service_id'] for i in data["services"] if 'slack' in i['broker_id']]:
+      print("slack not in toolchain.json")
     slack_api_token = [i['parameters']['api_token'] for i in data["services"] if 'git' in i['broker_id']]
     print("slack_service_id:",[i['parameters']['service_id'] for i in data["services"] if 'git' in i['broker_id']])
     print("slack_api_token:",[i['parameters']['api_token'] for i in data["services"] if 'git' in i['broker_id']])
