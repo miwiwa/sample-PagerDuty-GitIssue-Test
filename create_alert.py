@@ -57,7 +57,7 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
-pprint.pprint(data)
+#pprint.pprint(data)
 # Formulate instance id and piplelines full url
 ids_region_id = ' '.join(map(str, data['region_id']))
 ids_instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]))
@@ -197,12 +197,12 @@ def trigger_slackMessage():
       else:
           print("Slack message not sent due to unknown status")
     
-      data = json.dumps(d)
+      slack_message = json.dumps(d)
    
       #Calling function to retrieve web hook
       web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-     
-      response = requests.post(web_hook_url, headers=headers, data=data)
+      print("webhook_url:", web_hook_url)
+      response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
       if response.status_code != 200:
           raise ValueError(
