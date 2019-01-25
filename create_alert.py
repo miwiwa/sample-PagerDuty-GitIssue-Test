@@ -201,7 +201,7 @@ def trigger_slackMessage():
    
       #Calling function to retrieve web hook
       web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-      print("webhook_url:", web_hook_url)
+      print(web_hook_url)
       response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
       if response.status_code != 200:
