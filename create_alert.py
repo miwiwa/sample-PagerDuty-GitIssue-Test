@@ -60,10 +60,7 @@ with open(toolchain_json) as f:
 pprint.pprint(data)
 # Formulate instance id and piplelines full url
 ids_region_id = ' '.join(map(str, data['region_id']))
-instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]))
-print("instance_id:", instance_id)
-ids_instance_id = instance_id[0]
-print("ids_instance_id:", ids_instance_id)
+ids_instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]))
 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
 pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id +  "/" + ids_job_id + "?env_id=" + ids_region_id
@@ -125,8 +122,6 @@ def trigger_issue():
     git_repo_owner = environ.get('git_repo_owner')
     git_repo_name = environ.get('git_repo_name')
     git_issue_label = environ.get('git_issue_label')
-    print("git_repo_owner_env:",git_repo_owner)
-    print("git_repo_name_env:",git_repo_name)
     
     api_base_url = "https://api.github.com/"
     
@@ -141,13 +136,8 @@ def trigger_issue():
     else:
       try:
         print("Creating Git issue....")
-        git_repo_owner = ' '.join(map(str, [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]))
-       # git_repo_owner =  ' '.join(map(str, git_repo_owner))      
+        git_repo_owner = ' '.join(map(str, [i['parameters']['owner_id'] for i in data["services"] if 'git' in i['broker_id']]))            
         git_repo_name = ' '.join(map(str, [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]))
-        #git_repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'git' in i['broker_id']]
-       # git_repo_name =  ' '.join(map(str, git_repo_name))
-        print("git_repo_owner_try:", git_repo_owner)
-        print("git_repo_name_try:", git_repo_name)
       except (KeyError, IndexError):
         print("Warning: Git Issues is not configured correctly with the toolchain")
     
