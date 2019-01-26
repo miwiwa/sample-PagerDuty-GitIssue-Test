@@ -4,27 +4,24 @@ import yaml
 import sys
 
 # Read in argument(s)
-description = 'Helper functions for Pipeline Config file'
+#description = 'Helper functions for Pipeline Config file'
    
-parser = argparse.ArgumentParser(     description=__doc__)
-parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
+#parser = argparse.ArgumentParser(     description=__doc__)
+#parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
 #parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
-parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
-parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
+#parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
+#parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 # Additional arguments from create_alert
-parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
-parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
+#parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
+#parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 
-args = parser.parse_args()
-config = args.CONFIG
-param_value = args.VALUE
-alert_check = args.EXCLUSION_FLAG
+#args = parser.parse_args()
+#config = args.CONFIG
+#param_value = args.VALUE
+#alert_check = args.EXCLUSION_FLAG
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
-
-url = "https://www.espn.com"
-print("url:", type(url))
 
 # Reads in config file to dict
 def read_config(config):
