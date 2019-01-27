@@ -75,6 +75,7 @@ def trigger_incident():
         pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     	
         api_key = pd_api_key[0]
+        print("api_key",api_key)
         service_id = pd_service_id[0]
         user_email = pd_user_email[0]
     except (KeyError, IndexError):
