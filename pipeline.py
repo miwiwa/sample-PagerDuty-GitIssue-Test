@@ -57,16 +57,16 @@ def get_job_exclusions(config, param_value, ids_job_name):
     return exclude
            
 
-#def main():
-#    if alert_check:
-#        alerts = get_job_exclusions(config, param_value, ids_job_name)
-#        print(alerts)
-#        return alerts
-#    elif param_value:
-#        config_value = retrieve_config_value(config, param_value)
-#        print(config_value),
-#    else:
-#        print("parameter not passed correctly")
+def main():
+    if alert_check:
+        alerts = get_job_exclusions(config, param_value, ids_job_name)
+        print(alerts)
+        return alerts
+    elif param_value:
+        config_value = retrieve_config_value(config, param_value)
+        print(config_value),
+    else:
+        print("parameter not passed correctly")
 
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+    main()
