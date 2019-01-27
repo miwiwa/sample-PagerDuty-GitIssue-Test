@@ -25,7 +25,7 @@ curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-
 #get_exclusions=$(python pipeline.py -c $filename -d $alert_exclusions -e)
 get_exclusions=$(python -c 'import pipeline; pipeline.get_job_exclusions("pipeline.config", "ALERT_EXCLUSIONS", "Linting")')
 
-print("get_exclusions:", get_exclusions)
+echo "get_exclusions: $get_exclusions"
 # Retrieve line from exclusion list for current job
 total_exclusions=$(echo $get_exclusions | tr ',' ' ' | wc -w)
 
