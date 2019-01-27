@@ -67,7 +67,7 @@ pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id + 
 
 def trigger_incident():
 	# Function creates request to create new PagerDuty incident and submits
-    
+    print("Inside trigger_incident call")
     # Parse dict for PagerDuty parameters
     try:
         pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
