@@ -25,6 +25,7 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 
 # Reads in config file to dict
 def read_config(config):
+  print("in read config")
   with open(config, 'r') as f:
     try:
       pipeline_config = yaml.load(f)
@@ -51,6 +52,7 @@ def retrieve_config_value(config_file, param):
  # Return exclusions listed in pipeline.config as list
 def get_job_exclusions(config, param_value, ids_job_name):      
     exclude = []
+    print("In get job exclusions")
     pipeline_config = read_config(config)
     for exc in pipeline_config[param_value][ids_job_name]:
     	exclude.append(exc)
