@@ -206,6 +206,8 @@ def trigger_slackMessage():
       #Calling function to retrieve web hook
       web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
       print(web_hook_url)
+      registry_namespace = pipeline.retrieve_config_value('pipeline.config', 'REGISTRY_NAMESPACE')
+      print("registry_namespace:", registry_namespace)
       response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
       if response.status_code != 200:
