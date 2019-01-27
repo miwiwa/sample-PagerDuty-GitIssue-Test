@@ -70,6 +70,7 @@ def trigger_incident():
     print("Inside trigger_incident call")
     # Parse dict for PagerDuty parameters
     try:
+        print("Inside try block")
         pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
         pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
         pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
