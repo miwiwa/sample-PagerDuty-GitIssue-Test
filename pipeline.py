@@ -33,7 +33,7 @@ def read_config(config):
       print("exc:", exc)
   return pipeline_config
 
-# Return key value from pipeline.config
+# Retujrn key value from pipeline.config
 def retrieve_config_value(config_file, param): 
   pipeline_config = read_config(config_file)
   stack = list(pipeline_config.items())
