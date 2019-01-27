@@ -31,6 +31,7 @@ def read_config(config):
       pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
       print("exc:", exc)
+  print("pipeline_config", pipeline_config)
   return pipeline_config
 
 # Retujrn key value from pipeline.config
@@ -56,6 +57,7 @@ def get_job_exclusions(config, param_value, ids_job_name):
     pipeline_config = read_config(config)
     for exc in pipeline_config[param_value][ids_job_name]:
     	exclude.append(exc)
+    print("exclude:", exclude)
     return exclude
            
 
