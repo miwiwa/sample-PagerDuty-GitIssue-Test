@@ -23,7 +23,7 @@ alert_exclusions="ALERT_EXCLUSIONS"
 curl -sSL -u "watkins0@us.ibm.com:${gitApiKey}" "https://raw.github.ibm.com/whc-toolchain/whc-commons/${WHC_COMMONS_BRANCH}/scripts/grab_pipeline_config.py" > grab_pipeline_config.py
 
 echo "getting python exclusions"
-get_exclusions=$(python create_alert.py -c $filename -d $alert_exclusions -e)
+get_exclusions=$(/usr/bin/python create_alert.py -c $filename -d $alert_exclusions -e)
 #get_exclusions=$(python pipeline.py -c $filename -d $alert_exclusions -e)
 #get_exclusions=$(python -c 'import pipeline; pipeline.get_job_exclusions("pipeline.config", "ALERT_EXCLUSIONS", "Linting")')
 #get_namespace=$(python pipeline.retrieve_config_value($filename, "POLICY_NAME")')
