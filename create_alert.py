@@ -35,7 +35,6 @@ config_file = args.CONFIG
 param_search = args.VALUE
 exclusion_flag = args.EXCLUSION_FLAG
 
-print("In create alert.py")
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -56,7 +55,7 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
-print("current_time:", current_time)
+
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
@@ -77,7 +76,6 @@ def trigger_incident():
     print("Inside trigger_incident call")
     # Parse dict for PagerDuty parameters
     try:
-        print("Inside try block")
         pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
         pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
         print("pd_api_key:", pd_api_key)
