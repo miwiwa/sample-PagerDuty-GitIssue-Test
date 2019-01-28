@@ -100,7 +100,7 @@ def trigger_incident():
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.pagerduty+json;version=2',
         'Authorization': 'Token token={token}'.format(token=pd_api_key),
-        'From': user_email
+        'From': pd_from_email
     }
 
     payload = {
