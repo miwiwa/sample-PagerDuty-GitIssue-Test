@@ -83,12 +83,12 @@ def trigger_incident():
     else:
         try:
             pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-            pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+            api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
             print("pd_api_key:", pd_api_key)
             pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     	
-            api_key = pd_api_key[0]
-            print("api_key",api_key)
+            pd_api_key = api_key[0]
+            print("api_key",pd_api_key)
             service_id = pd_service_id[0]
             user_email = pd_user_email[0]
         except (KeyError, IndexError):
@@ -99,7 +99,7 @@ def trigger_incident():
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token={token}'.format(token=api_key),
+        'Authorization': 'Token token={token}'.format(token=pd_api_key),
         'From': user_email
     }
 
