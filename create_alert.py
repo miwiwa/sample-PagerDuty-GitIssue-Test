@@ -68,16 +68,6 @@ ids_instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
 pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id +  "/" + ids_job_id + "?env_id=" + ids_region_id
 
-# Return exclusions listed in pipeline.config as list
-def get_job_exclusions(config_file, param_search, ids_job_name):      
-    exclude = []
-    print("exclude:", exclude)
-    pipeline_config = pipeline.read_config(config)
-    print("pipeline_config:", pipeline_config)
-    for exc in pipeline_config[param_value][ids_job_name]:
-    	exclude.append(exc)
-    print("exclude:", exclude)
-    return exclude
 
 def trigger_incident():
 	# Function creates request to create new PagerDuty incident and submits

@@ -9,19 +9,19 @@ import pipeline
 # Read in argument(s)
 description = 'Helper functions for Pipeline Config file'
    
-#parser = argparse.ArgumentParser(     description=__doc__)
-#parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
-#parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
-#parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
-#parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
+parser = argparse.ArgumentParser(     description=__doc__)
+parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
+parser.add_argument('-e', '--EXCLUSIONS', nargs='?', type=str.upper, default="ALERT_EXCLUSIONS", dest='EXCLUSIONS', help="Enter name of parameter to retrieve")
+parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
+parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 # Additional arguments from create_alert
-#parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
-#parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
+parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
+parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 
-#args = parser.parse_args()
-#config = args.CONFIG
-#param_value = args.VALUE
-#alert_check = args.EXCLUSION_FLAG
+args = parser.parse_args()
+config = args.CONFIG
+param_value = args.VALUE
+alert_check = args.EXCLUSION_FLAG
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -53,25 +53,25 @@ def retrieve_config_value(config_file, param):
       visited.add(k)
       
  # Return exclusions listed in pipeline.config as list
-#def get_job_exclusions(config, param_value, ids_job_name):      
-#    exclude = []
-#    pipeline_config = read_config(config)
-#    for exc in pipeline_config[param_value][ids_job_name]:
-#    	exclude.append(exc)
-#    print("exclude:", exclude)
-#    return exclude
+def get_job_exclusions(config, param_value, ids_job_name):      
+    exclude = []
+    pipeline_config = read_config(config)
+    for exc in pipeline_config[param_value][ids_job_name]:
+    	exclude.append(exc)
+    print("exclude:", exclude)
+    return exclude
            
 
-#def main():
-#    if alert_check:
-#        alerts = get_job_exclusions(config, param_value, ids_job_name)
-#        print(alerts)
-#        return alerts
-#    elif param_value:
-#        config_value = retrieve_config_value(config, param_value)
-#        print(config_value),
-#    else:
-#        print("parameter not passed correctly")
+def main():
+    if alert_check:
+        alerts = get_job_exclusions(config, param_value, ids_job_name)
+        print(alerts)
+        return alerts
+    elif param_value:
+        config_value = retrieve_config_value(config, param_value)
+        print(config_value),
+    else:
+        print("parameter not passed correctly")
 
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+    main()
