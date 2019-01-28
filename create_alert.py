@@ -73,18 +73,24 @@ pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id + 
 
 def trigger_incident():
 	# Function creates request to create new PagerDuty incident and submits
-    print("Inside trigger_incident call")
+    pd_service_id = environ.get('PAGERDUTY_SERVICE_ID')
+    pd_api_key = environ.get('PAGERDUTY_API_KEY')
+    pd_from_email = environ.get('PAGERDUTY_FROM')
+    
+    if pd_service_id is not None and pd_api_key is not None and pd_from_email is not None:
+        print("Sending PagerDuty incident request")
     # Parse dict for PagerDuty parameters
-    try:
-        pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-        pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-        print("pd_api_key:", pd_api_key)
-        pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    else:
+        try:
+            pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+            pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+            print("pd_api_key:", pd_api_key)
+            pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     	
-        api_key = pd_api_key[0]
-        print("api_key",api_key)
-        service_id = pd_service_id[0]
-        user_email = pd_user_email[0]
+            api_key = pd_api_key[0]
+            print("api_key",api_key)
+            service_id = pd_service_id[0]
+            user_email = pd_user_email[0]
     except (KeyError, IndexError):
         print("Warning: Pager Duty is not configured with the toolchain")
           
