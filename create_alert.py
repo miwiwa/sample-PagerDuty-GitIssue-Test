@@ -89,8 +89,8 @@ def trigger_incident():
     	
             pd_api_key = api_key[0]
             print("api_key",pd_api_key)
-            service_id = pd_service_id[0]
-            user_email = pd_from_email[0]
+            pd_service_id = pd_service_id[0]
+            pd_from_email = pd_from_email[0]
         except (KeyError, IndexError):
             print("Warning: Pager Duty is not configured with the toolchain")
           
@@ -108,7 +108,7 @@ def trigger_incident():
             "type": "incident",
             "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + " and Project: " + ids_project_name + " failed" ,
             "service": {
-                "id": service_id,
+                "id": pd_service_id,
                 "type": "service_reference"
             },
             "body": {
