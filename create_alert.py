@@ -35,6 +35,8 @@ config_file = args.CONFIG
 param_search = args.VALUE
 exclusion_flag = args.EXCLUSION_FLAG
 
+print("In create alert.py")
+
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_stage_num = environ.get('BUILD_DISPLAY_NAME')
@@ -54,6 +56,7 @@ trigger_user = environ.get('PIPELINE_TRIGGERING_USER')
 currentDT = datetime.datetime.now()
 current_time = currentDT.strftime("%a, %b %d, %Y %I:%M:%S %p %Z")     
 
+print("current_time:", current_time)
 # Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
