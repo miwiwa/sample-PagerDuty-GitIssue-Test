@@ -21,7 +21,7 @@ import pipeline
 description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
    
 parser = argparse.ArgumentParser(     description=__doc__)
-parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack", required=True)
+parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")
 parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 #additional params not needed by this script but by other
 parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', help="Enter name of config file to search")
