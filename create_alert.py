@@ -31,6 +31,9 @@ parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='st
 args = parser.parse_args()
 alerts = args.ALERTS
 job_status = args.STATUS
+config_file = args.CONFIG
+param_search = args.VALUE
+exclusion_flag = args.EXCLUSION_FLAG
 
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -64,6 +67,15 @@ ids_instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] 
 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
 pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id +  "/" + ids_job_id + "?env_id=" + ids_region_id
+
+# Return exclusions listed in pipeline.config as list
+def get_job_exclusions(config_file, param_search, ids_job_name):      
+    exclude = []
+    pipeline_config = read_config(config)
+    for exc in pipeline_config[param_value][ids_job_name]:
+    	exclude.append(exc)
+    print("exclude:", exclude)
+    return exclude
 
 def trigger_incident():
 	# Function creates request to create new PagerDuty incident and submits
