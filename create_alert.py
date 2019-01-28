@@ -71,7 +71,8 @@ pipeline_full_url = pipeline_base_url + pipeline_id + "/" + pipeline_stage_id + 
 # Return exclusions listed in pipeline.config as list
 def get_job_exclusions(config_file, param_search, ids_job_name):      
     exclude = []
-    pipeline_config = read_config(config)
+    pipeline_config = pipeline.read_config(config)
+    print("pipeline_config:", pipeline_config)
     for exc in pipeline_config[param_value][ids_job_name]:
     	exclude.append(exc)
     print("exclude:", exclude)
