@@ -4,6 +4,7 @@ import argparse
 from os import environ
 import yaml
 import sys
+import pipeline
 
 # Read in argument(s)
 description = 'Helper functions for Pipeline Config file'
@@ -14,8 +15,8 @@ parser.add_argument('-c', '--CONFIG', nargs='?', type=str.lower, dest='CONFIG', 
 parser.add_argument('-d', '--VALUE', nargs='?', type=str.upper, dest='VALUE', help="Enter name of parameter to retrieve")
 parser.add_argument('-e', '--EXCLUSIONS_FLAG', dest='EXCLUSION_FLAG', action='store_true')
 # Additional arguments from create_alert
-parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
-parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
+#parser.add_argument('-a', '--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'incident', 'issue', and/or 'message' to send info to PagerDuty, Git, or Slack")#, required=True)
+#parser.add_argument('-s', '--STATUS', nargs='?', type=str.lower, dest='STATUS', default='Executed', help="Enter 'started' or 'completed' for Slack alerts")
 
 args = parser.parse_args()
 config = args.CONFIG
@@ -61,16 +62,16 @@ def get_job_exclusions(config, param_value, ids_job_name):
     return exclude
            
 
-#def main():
-#    if alert_check:
-#        alerts = get_job_exclusions(config, param_value, ids_job_name)
-#        print(alerts)
-#        return alerts
-#    elif param_value:
-#        config_value = retrieve_config_value(config, param_value)
-#        print(config_value),
-#    else:
-#        print("parameter not passed correctly")
+def main():
+    if alert_check:
+        alerts = get_job_exclusions(config, param_value, ids_job_name)
+        print(alerts)
+        return alerts
+    elif param_value:
+        config_value = retrieve_config_value(config, param_value)
+        print(config_value),
+    else:
+        print("parameter not passed correctly")
 
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+    main()
