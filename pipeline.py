@@ -60,8 +60,10 @@ def get_job_exclusions(config, param_value, ids_job_name):
         for exc in pipeline_config[param_value][ids_job_name]:
             print(exc)
     	    exclude.append(exc)
-    except KeyError,TypeError:
+    except KeyError:
         return ids_job_name
+    except TypeError:
+        print("WARNING: Job listed in exclusions with no alerts to exclude")
      
     print("exclude:", exclude)
     return exclude
