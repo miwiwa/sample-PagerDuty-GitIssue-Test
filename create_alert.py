@@ -106,7 +106,7 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + " and Project: " + ids_project_name + " failed" ,
+            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + ":" + ids_stage_num  + " Project: " + ids_project_name + " failed" ,
             "service": {
                 "id": pd_service_id,
                 "type": "service_reference"

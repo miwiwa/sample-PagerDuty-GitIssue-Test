@@ -38,8 +38,7 @@ def read_config(config):
       pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
       print("Yaml file not formatted correctly")
-      print("exc:", exc)
-    
+      print("exc:", exc) 
   return pipeline_config
 
 # Return key value from pipeline.config
