@@ -20,7 +20,7 @@ try:
     import pipeline
 except ImportError as L_err:
     print("ImportError: {0}".format(L_err))
-    raise L_err
+    
     
 # Read in argument(s)
 description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
