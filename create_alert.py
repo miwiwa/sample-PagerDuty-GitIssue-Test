@@ -82,7 +82,7 @@ def trigger_incident():
     # Parse dict for PagerDuty parameters
     else:
         try:
-            "Checking for PD in toolchain.json"
+            print("Checking for PD in toolchain.json")
             pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
             api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
             print("pd_api_key:", pd_api_key)
