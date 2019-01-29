@@ -1,22 +1,27 @@
 #!/usr/bin/env python
 # Program submits PagerDuty incidents or Git issues upon request
 
-import pip
-package = 'requests'
-pip.main(['install', package, '--ignore-installed', '-q'])
+try:
+    import pip
+    package = 'requests'
+    pip.main(['install', package, '--ignore-installed', '-q'])
 
-import requests
-import json
-import argparse
-from os import environ
-import subprocess
-import re
-import sys
-import yaml
-import datetime
-import pprint
-import pipeline
-
+    import requests
+    import json
+    import argparse
+    from os import environ
+    import subprocess
+    import re
+    import sys
+    import syst
+    import yaml
+    import datetime
+    import pprint
+    import pipeline
+except ImportError as L_err:
+    print("ImportError: {0}".format(L_err))
+    raise L_err
+    
 # Read in argument(s)
 description = 'Specify creation of incident/issue/message in Pagerduty, Git, and Slack'
    
@@ -82,14 +87,11 @@ def trigger_incident():
     # Parse dict for PagerDuty parameters
     else:
         try:
-            print("Checking for PD in toolchain.json")
             pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
             api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-            print("pd_api_key:", pd_api_key)
             pd_from_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     	
             pd_api_key = api_key[0]
-            print("api_key",pd_api_key)
             pd_service_id = pd_service_id[0]
             pd_from_email = pd_from_email[0]
         except (KeyError, IndexError):
