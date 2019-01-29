@@ -3,7 +3,7 @@
 
 import pip
 package = 'requests'
-pip.main(['install', package])
+pip.main(['install', package, '-q'])
 
 import requests
 import json
