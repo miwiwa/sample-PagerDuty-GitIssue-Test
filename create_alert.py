@@ -190,12 +190,10 @@ def trigger_slackMessage():
     
     d = {}
     global data
-    #print("data:",data)
     
-    print("Checking Slack parameters in toolchain.json")
     # Parse dict for PagerDuty parameters
     #try:
-    print("serviceslack:", [i['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
+   # print("serviceslack:", [i['service_id'] for i in data["services"] if 'slack' in i['broker_id']])
     if not [i['service_id'] for i in data["services"] if 'slack' in i['broker_id']]:
       print("slack not in toolchain.json")
     
@@ -216,9 +214,7 @@ def trigger_slackMessage():
    
       #Calling function to retrieve web hook
       web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-      print(web_hook_url)
       registry_namespace = pipeline.retrieve_config_value('pipeline.config', 'REGISTRY_NAMESPACE')
-      print("registry_namespace:", registry_namespace)
       response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
       if response.status_code != 200:
