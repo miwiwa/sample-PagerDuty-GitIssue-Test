@@ -5,8 +5,8 @@
 
 enable_alerts=()
 
-sudo apt-get -qq update
-sudo apt-get -qq install python python-yaml
+sudo apt-get update > /dev/null
+sudo apt-get install python python-yaml > /dev/null
 
 if [ $# -eq 1 ]
   then
