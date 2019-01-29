@@ -65,6 +65,7 @@ with open(toolchain_json) as f:
 #pprint.pprint(data)
 # Formulate instance id and piplelines full url
 ids_region_id = ' '.join(map(str, data['region_id']))
+print("ids_region_id", ids_region_id)
 ids_instance_id = ' '.join(map(str, [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]))
 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
@@ -214,7 +215,7 @@ def trigger_slackMessage():
    
       #Calling function to retrieve web hook
       web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
-      registry_namespace = pipeline.retrieve_config_value('pipeline.config', 'REGISTRY_NAMESPACE')
+      #registry_namespace = pipeline.retrieve_config_value('pipeline.config', 'REGISTRY_NAMESPACE')
       response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
       if response.status_code != 200:
