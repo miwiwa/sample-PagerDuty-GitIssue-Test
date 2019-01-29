@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 
-import argparse
-from os import environ
-import yaml
-import sys
-import pipeline
-
+try:
+    import argparse
+    from os import environ
+    import yaml
+    import sys
+    import pipeline
+except ImportError as L_err:
+    print("ImportError: {0}".format(L_err))
+    raise L_err
+    
+    
 # Read in argument(s)
 description = 'Helper functions for Pipeline Config file'
    
@@ -32,6 +37,9 @@ def read_config(config):
     try:
       pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
+      print("Yaml file not formatted correctly")
+      print("exc:", exc)
+    except UnboundLocalError as exc:
       print("Yaml file not formatted correctly")
       print("exc:", exc)
   return pipeline_config
