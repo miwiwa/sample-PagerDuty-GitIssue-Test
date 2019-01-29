@@ -55,10 +55,12 @@ def retrieve_config_value(config_file, param):
 def get_job_exclusions(config, param_value, ids_job_name):      
     exclude = []
     pipeline_config = read_config(config)
+    print(pipeline_config)
     try:
         for exc in pipeline_config[param_value][ids_job_name]:
+            print(exc)
     	    exclude.append(exc)
-    except KeyError:
+    except KeyError,TypeError:
         return ids_job_name
      
     print("exclude:", exclude)
