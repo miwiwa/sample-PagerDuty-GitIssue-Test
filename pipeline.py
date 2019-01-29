@@ -28,9 +28,11 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 # Reads in config file to dict
 def read_config(config):
   with open(config, 'r') as f:
+    print("reading yaml file")
     try:
       pipeline_config = yaml.load(f)
     except yaml.YAMLError as exc:
+      print("Yaml file not formatted correctly")
       print("exc:", exc)
   return pipeline_config
 
