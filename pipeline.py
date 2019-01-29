@@ -39,11 +39,8 @@ def read_config(config):
     except yaml.YAMLError as exc:
       print("Yaml file not formatted correctly")
       print("exc:", exc)
-    except UnboundLocalError as exc:
-      print("Yaml file not formatted correctly")
-      print("exc:", exc)
-    finally:
-      return pipeline_config
+    
+  return pipeline_config
 
 # Return key value from pipeline.config
 def retrieve_config_value(config_file, param): 
