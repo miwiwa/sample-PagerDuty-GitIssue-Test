@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Program submits PagerDuty incidents or Git issues upon request
+# Program submits PagerDuty incidents, Git issues, and Slack messages upon request
 
 try:
     import pip
