@@ -16,7 +16,7 @@ try:
     import yaml
     import datetime
     import pprint
-    import pipeline
+    import alert_helper
 except ImportError as L_err:
     print("ImportError: {0}".format(L_err))
     
@@ -214,7 +214,7 @@ def trigger_slackMessage():
       slack_message = json.dumps(d)
    
       #Calling function to retrieve web hook
-      web_hook_url = pipeline.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
+      web_hook_url = alert_helper.retrieve_config_value('pipeline.config', 'SLACK_WEBHOOK_URL')
 
       response = requests.post(web_hook_url, headers=headers, data=slack_message)
    
